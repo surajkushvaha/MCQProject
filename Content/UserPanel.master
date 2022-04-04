@@ -1,0 +1,593 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="UserPanel.master.cs" Inherits="Content_UserPanel" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <base href="../../" />
+    <title>GEAMs - Government Exams Aptitude & MCQ</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="#" />
+    <meta name="keywords" content="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="canonical" href="#" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link href="~/Content/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+        type="text/css" />
+    <link href="~/Content/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+        type="text/css" />
+    <!--end::Page Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="~/Content/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<!--begin::Body-->
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed"
+    style="--kt-toolbar-height: 55px; --kt-toolbar-height-tablet-and-mobile: 55px">
+    <div class="loader">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .loader {
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            transition: all 0.5s;
+            background-color: #0099ff;
+            z-index: 99999;
+        }
+
+        .lds-ellipsis {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+            .lds-ellipsis div {
+                position: absolute;
+                top: 33px;
+                width: 13px;
+                height: 13px;
+                border-radius: 50%;
+                background: #fff;
+                animation-timing-function: cubic-bezier(0, 1, 1, 0);
+            }
+
+                .lds-ellipsis div:nth-child(1) {
+                    left: 8px;
+                    animation: lds-ellipsis1 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(2) {
+                    left: 8px;
+                    animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(3) {
+                    left: 32px;
+                    animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(4) {
+                    left: 56px;
+                    animation: lds-ellipsis3 0.6s infinite;
+                }
+
+        @keyframes lds-ellipsis1 {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes lds-ellipsis3 {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+    </style>
+    <form id="form1" runat="server">
+        <%--<asp:DataList ID="DataList1" runat="server"></asp:DataList>--%>
+    </form>
+
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!--begin::Wrapper-->
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                <!--begin::Header-->
+                <div id="kt_header" style="" class="header align-items-stretch">
+                    <!--begin::Container-->
+                    <div class="container-xxl d-flex align-items-stretch justify-content-between">
+
+                        <!--begin::Logo-->
+                        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
+                            <a href="#">
+                                <img alt="Logo" src="assets/media/logos/logo-1.svg" class="h-20px h-lg-30px" />
+                            </a>
+                        </div>
+                        <!--end::Logo-->
+                        <!--begin::Wrapper-->
+                        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+                            <!--begin::Navbar-->
+                            <div class="d-flex align-items-stretch" id="kt_header_nav">
+                                <!--begin::Menu wrapper-->
+                                <div class="header-menu align-items-stretch rounded" data-kt-drawer="true" data-kt-drawer-name="header-menu"
+                                    data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+                                    data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end"
+                                    data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true"
+                                    data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+                                    <!--begin::Menu-->
+                                    <div class="menu menu-lg-rounded  menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
+                                        id="#kt_header_menu" data-kt-menu="true">
+                                        <div class="menu-item menu-lg-down-accordion me-lg-1">
+                                            <span class="menu-link py-3">
+                                                <span class="menu-title">Home</span>
+                                            </span>
+
+                                        </div>
+                                        <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
+                                            <span class="menu-link py-3">
+                                                <span class="menu-title">Exams Category</span>
+                                                <span class="menu-arrow d-lg-none"></span>
+                                            </span>
+                                            <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                                <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                    <span class="menu-link py-3">
+                                                        <span class="menu-icon">
+                                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                            <span class="svg-icon svg-icon-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                    fill="none">
+                                                                    <path d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                        fill="black" />
+                                                                    <path d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                        fill="black" />
+                                                                    <path opacity="0.3" d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                        fill="black" />
+                                                                    <path opacity="0.3" d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                        fill="black" />
+                                                                </svg>
+                                                            </span>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-title">Exam Name</span>
+                                                        <span class="menu-arrow"></span>
+                                                    </span>
+                                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px">
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/lists.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Subject Name</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="#">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Statistics</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/charts.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Charts</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/mixed.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Mixed</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/tables.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Tables</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/feeds.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Feeds</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
+                                            <span class="menu-link py-3">
+                                                <span class="menu-title">Test</span>
+                                                <span class="menu-arrow d-lg-none"></span>
+                                            </span>
+                                            <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                                <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                    <span class="menu-link py-3">
+                                                        <span class="menu-icon">
+                                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                            <span class="svg-icon svg-icon-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                    fill="none">
+                                                                    <path d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                        fill="black" />
+                                                                    <path d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                        fill="black" />
+                                                                    <path opacity="0.3" d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                        fill="black" />
+                                                                    <path opacity="0.3" d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                        fill="black" />
+                                                                </svg>
+                                                            </span>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-title">Widgets</span>
+                                                        <span class="menu-arrow"></span>
+                                                    </span>
+                                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px">
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/lists.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Lists</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/statistics.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Statistics</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/charts.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Charts</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/mixed.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Mixed</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/tables.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Tables</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/feeds.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Feeds</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                    <span class="menu-link py-3">
+                                                        <span class="menu-icon">
+                                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                            <span class="svg-icon svg-icon-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                    fill="none">
+                                                                    <path d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                        fill="black" />
+                                                                    <path d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                        fill="black" />
+                                                                    <path opacity="0.3" d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                        fill="black" />
+                                                                    <path opacity="0.3" d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                        fill="black" />
+                                                                </svg>
+                                                            </span>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-title">Widgets</span>
+                                                        <span class="menu-arrow"></span>
+                                                    </span>
+                                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px">
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/lists.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Lists</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/statistics.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Statistics</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/charts.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Charts</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/mixed.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Mixed</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/tables.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Tables</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="menu-item">
+                                                            <a class="menu-link py-3" href="../../demo1/dist/widgets/feeds.html">
+                                                                <span class="menu-bullet">
+                                                                    <span class="bullet bullet-dot"></span>
+                                                                </span>
+                                                                <span class="menu-title">Feeds</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--end::Menu-->
+                                </div>
+                                <!--end::Menu wrapper-->
+                            </div>
+                            <!--end::Navbar-->
+                            <!--begin::Toolbar wrapper-->
+                            <div class="d-flex align-items-stretch flex-shrink-0">
+
+                                <!--begin::Header menu toggle-->
+                                <div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
+                                    <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
+                                        id="kt_header_menu_mobile_toggle">
+                                        <!--begin::Svg Icon | path: icons/duotune/text/txt001.svg-->
+                                        <span class="svg-icon svg-icon-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                fill="none">
+                                                <path d="M13 11H3C2.4 11 2 10.6 2 10V9C2 8.4 2.4 8 3 8H13C13.6 8 14 8.4 14 9V10C14 10.6 13.6 11 13 11ZM22 5V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4V5C2 5.6 2.4 6 3 6H21C21.6 6 22 5.6 22 5Z"
+                                                    fill="black" />
+                                                <path opacity="0.3" d="M21 16H3C2.4 16 2 15.6 2 15V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V15C22 15.6 21.6 16 21 16ZM14 20V19C14 18.4 13.6 18 13 18H3C2.4 18 2 18.4 2 19V20C2 20.6 2.4 21 3 21H13C13.6 21 14 20.6 14 20Z"
+                                                    fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </div>
+                                </div>
+                                <!--end::Header menu toggle-->
+                            </div>
+                            <!--end::Toolbar wrapper-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Header-->
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    <!--begin::Toolbar-->
+                    <div class="toolbar" id="kt_toolbar">
+                        <!--begin::Container-->
+                        <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack">
+                            <!--begin::Page title-->
+                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                                class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                <!--begin::Title-->
+                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Home</h1>
+                                <!--end::Title-->
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                                <!--end::Separator-->
+                                <!--begin::Breadcrumb-->
+                                <ul class="breadcrumb  fw-bold fs-7 my-1">
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-muted">
+                                        <a href="#" class="text-muted text-hover-primary">Home</a>
+                                    </li>
+                                    <!--end::Item-->
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-muted">Aside</li>
+                                    <!--end::Item-->
+
+                                    <!--begin::Item-->
+                                    <li class="breadcrumb-item text-dark">Only Header</li>
+                                    <!--end::Item-->
+                                </ul>
+                                <!--end::Breadcrumb-->
+                            </div>
+                            <!--end::Page title-->
+
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Toolbar-->
+                    <!--begin::Post-->
+                    <div class="post d-flex flex-column-fluid" id="kt_post">
+                        <!--begin::Container-->
+                        <div id="kt_content_container" class="container-xxl">
+                            <%--Begin Content Place Holder--%>
+
+                            <div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                            <%--End Content Place Holder--%>
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Post-->
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                    <!--begin::Container-->
+                    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <!--begin::Copyright-->
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted fw-bold me-1">2022©</span>
+                            <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">
+                                Keenthemes</a>
+                        </div>
+                        <!--end::Copyright-->
+                        <!--begin::Menu-->
+                        <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+                            <li class="menu-item">
+                                <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
+                            </li>
+                        </ul>
+                        <!--end::Menu-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Footer-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Root-->
+
+    <!--end::Main-->
+
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+        <span class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none">
+                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)"
+                    fill="black" />
+                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
+                    fill="black" />
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+    </div>
+    <!--end::Scrolltop-->
+    <script>
+        const loader = document.querySelector(".loader");
+        window.onload = function () {
+            setTimeout(function () {
+                loader.style.opacity = "0";
+                setTimeout(function () {
+                    loader.style.display = "none";
+                }, 500);
+            }, 1500);
+        }
+    </script>
+    <!--begin::Javascript-->
+    <script>var hostUrl = "./Content/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="./Content/plugins/global/plugins.bundle.js"></script>
+    <script src="./Content/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Vendors Javascript(used by this page)-->
+    <script src="./plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="./Content/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--end::Page Vendors Javascript-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="./Content/js/widgets.bundle.js"></script>
+    <script src="./Content/js/custom/widgets.js"></script>
+    <script src="./Content/js/custom/apps/chat/chat.js"></script>
+    <script src="./Content/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="./Content/js/custom/utilities/modals/create-app.js"></script>
+    <script src="./Content/js/custom/utilities/modals/users-search.js"></script>
+
+    <!--end::Page Custom Javascript-->
+    <!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>
