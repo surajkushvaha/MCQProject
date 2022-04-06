@@ -31,7 +31,23 @@
 </head>
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
     style="--kt-toolbar-height: 55px; --kt-toolbar-height-tablet-and-mobile: 55px">
-
+    
+    <iframe class="loader" src="../Content/Loader.html"></iframe>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        .loader {
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            transition: all 0.5s;
+            background-color: #0099ff;
+            z-index: 99999;
+        }     
+    </style>
 
       <%--<form id="form1" runat="server">
                         </form>--%>
@@ -102,7 +118,7 @@
 
                                 </div>
                                 <div class="menu-item menu-accordion">
-                                    <a class="menu-link" href="#!">
+                                    <a class="menu-link" href="./Account/Profile.aspx">
                                         <span class="menu-icon">
                                             <!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
                                             <span class="svg-icon svg-icon-2">
@@ -311,7 +327,7 @@
                                 </div>
 
                                 <div class="menu-item menu-accordion mb-1">
-                                    <a class="menu-link" href="#">
+                                    <a class="menu-link" href="./Feedback/Feedback.aspx">
                                         <span class="menu-icon">
                                             <!--begin::Svg Icon | path: icons/duotune/graphs/gra006.svg-->
                                             <span class="svg-icon svg-icon-2">
@@ -446,7 +462,7 @@
                                                         <div class="fw-bolder d-flex align-items-center fs-5">
                                                             Admin Name
                                                         </div>
-                                                        <a href="#" class="fw-bold text-muted text-hover-primary fs-7">admin@kt.com</a>
+                                                        <a  class="fw-bold text-muted text-hover-primary fs-7">admin@kt.com</a>
                                                     </div>
                                                     <!--end::Username-->
                                                 </div>
@@ -457,7 +473,7 @@
                                             <!--end::Menu separator-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-5">
-                                                <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                                                <a href="./Account/Profile.aspx" class="menu-link px-5">My Profile</a>
                                             </div>
                                             <!--end::Menu item-->
 
@@ -550,7 +566,17 @@
         <!--end::Svg Icon-->
     </div>
     <!--end::Scrolltop-->
-
+    <script>
+        const loader = document.querySelector(".loader");
+        window.onload = function () {
+            setTimeout(function () {
+                loader.style.opacity = "0";
+                setTimeout(function () {
+                    loader.style.display = "none";
+                }, 500);
+            }, 1500);
+        }
+    </script>
     <!--begin::Javascript-->
     <script>var hostUrl = "./Content/";</script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
@@ -561,9 +587,11 @@
     <script src="../Content/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="../Content/js/widgets.bundle.js"></script>
+<script src="../Content/js/custom/documentation/editors/quill/basic.js"></script>   
+     <script src="../Content/js/widgets.bundle.js"></script>
     <script src="../Content/js/custom/widgets.js"></script>
     <script src="../Content/js/custom/apps/chat/chat.js"></script>
+    <script src="../Content/js/custom/apps/contacts/edit-contact.js"></script>
     <script src="../Content/js/custom/utilities/modals/upgrade-plan.js"></script>
     <script src="../Content/js/custom/utilities/modals/create-app.js"></script>
     <script src="../Content/js/custom/utilities/modals/users-search.js"></script>

@@ -32,11 +32,11 @@
                             <!--begin::Links-->
                             <div class="text-center">
                                 <!--begin::Link-->
-                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" data-bs-target="#kt_modal_invite_friends"
-                                    data-bs-toggle="modal">Add Question</a>
+                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" href="./Questions/AddEditQuestion.aspx"
+                                    >Add Question</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-25" href="../../demo1/dist/apps/invoices/view/invoice-1.html">
+                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-25" href="./Questions/QuestionList.aspx">
                                     View Question</a>
                                 <!--end::Link-->
                             </div>
@@ -70,11 +70,10 @@
                             <!--begin::Links-->
                             <div class="text-center">
                                 <!--begin::Link-->
-                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" data-bs-target="#kt_modal_invite_friends"
-                                    data-bs-toggle="modal">Add Topic</a>
+                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" href="./Topics/AddEditTopic.aspx">Add Topic</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-20" href="../../demo1/dist/apps/invoices/view/invoice-1.html">
+                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-20" href="./Topics/TopicList.aspx">
                                     View Topics</a>
                                 <!--end::Link-->
                             </div>
@@ -110,11 +109,10 @@
                             <!--begin::Links-->
                             <div class="text-center">
                                 <!--begin::Link-->
-                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" data-bs-target="#kt_modal_invite_friends"
-                                    data-bs-toggle="modal">Add Subjects</a>
+                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" href="./Subjects/AddEditSubject.aspx">Add Subjects</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-20" href="../../demo1/dist/apps/invoices/view/invoice-1.html">
+                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-20" href="./Subjects/SubjectList.aspx">
                                     View Subjects</a>
                                 <!--end::Link-->
                             </div>
@@ -150,11 +148,10 @@
                             <!--begin::Links-->
                             <div class="text-center">
                                 <!--begin::Link-->
-                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" data-bs-target="#kt_modal_invite_friends"
-                                    data-bs-toggle="modal">Add Exams</a>
+                                <a class="btn btn-sm btn-white btn-color-gray-800 me-2" href="./Exams/AddEditExam.aspx">Add Exams</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-25" href="../../demo1/dist/apps/invoices/view/invoice-1.html">
+                                <a class="btn btn-sm bg-white btn-color-white bg-opacity-25" href="./Exams/ExamList.aspx">
                                     View Exams</a>
                                 <!--end::Link-->
                             </div>
