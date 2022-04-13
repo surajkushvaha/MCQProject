@@ -26,7 +26,7 @@
   height: 100vh;
   width: 100%;
   text-align: center;
-  animation: fadeInAnimation ease 2s;
+  animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;
   background: #fff;
             transition: all 0.5s;
