@@ -131,7 +131,7 @@
                         <asp:HyperLink runat="server" NavigateUrl="~/AdminPanel/Exams/ExamList.aspx" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</asp:HyperLink>
                         <!--end::Button-->
                         <!--begin::Button-->
-                        <asp:Button runat="server" ID="btnSave" type="submit" data-kt-contacts-type="submit" Text="Save" class="btn btn-primary" OnClick="btnSave_Click">
+                        <asp:Button runat="server" ID="btnSave" Text="Save" class="btn btn-primary" OnClick="btnSave_Click">
                             
                         </asp:Button>
                             <span class="indicator-progress">Please wait...
