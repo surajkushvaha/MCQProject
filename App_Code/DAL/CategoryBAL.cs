@@ -39,28 +39,28 @@ namespace MCQProject
 
 
         #region Insert
-        public Boolean Insert(CategoryENT entCategory)
-        {
-            using (SqlConnection objCon = new SqlConnection(ConnectionString))
-            {
-                if (objCon.State != ConnectionState.Open)
-                {
-                    objCon.Open();
-                }
-                using (SqlCommand objCmd = objCon.CreateCommand())
-                {
-                    try
-                    {
-                        objCmd.CommandType = CommandType.StoredProcedure;
-                        objCmd.CommandText = "";
-                    }
-                    catch
-                    {
+        //public Boolean Insert(CategoryENT entCategory)
+        //{
+        //    using (SqlConnection objCon = new SqlConnection(ConnectionString))
+        //    {
+        //        if (objCon.State != ConnectionState.Open)
+        //        {
+        //            objCon.Open();
+        //        }
+        //        using (SqlCommand objCmd = objCon.CreateCommand())
+        //        {
+        //            try
+        //            {
+        //                objCmd.CommandType = CommandType.StoredProcedure;
+        //                objCmd.CommandText = "";
+        //            }
+        //            catch
+        //            {
 
-                    }
-                }
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //}
         #endregion Insert
 
         #region Update 

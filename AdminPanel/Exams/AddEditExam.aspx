@@ -22,7 +22,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <h2>Add New Exam</h2>
+                    <h2><asp:Label ID="lblMode" runat="server">Add</asp:Label> Exam</h2>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -30,8 +30,8 @@
             <!--begin::Card body-->
             <div class="card-body pt-5">
                 <!--begin::Form-->
-                <form id="kt_ecommerce_settings_general_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                    action="#">
+                <div id="kt_ecommerce_settings_general_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                    >
 
                     <!--begin::Input group-->
                     <div class="fv-row mb-7 fv-plugins-icon-container">
@@ -39,12 +39,12 @@
                         <label class="fs-6 fw-bold form-label mt-3">
                             <span class="required">Exam Name</span>
                             <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                                data-bs-original-title="Enter the contact's name." aria-label="Enter the contact's name.">
+                                data-bs-original-title="Enter the Exam name." aria-label="Enter the Exam name.">
                             </i>
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="name" value="">
+                        <asp:TextBox runat="server" ID="txtExamName" class="form-control form-control-solid" name="Exam_name" value=""/>
                         <!--end::Input-->
                         <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
@@ -55,12 +55,12 @@
                         <label class="fs-6 fw-bold form-label mt-3">
                             <span class="required">Description</span>
                             <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                                data-bs-original-title="Enter the contact's company name (optional)." aria-label="Enter the contact's company name (optional).">
+                                data-bs-original-title="Enter the Description of Exam." aria-label="Enter the Description of Exam.">
                             </i>
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="company_name" value="">
+                        <asp:TextBox runat="server" ID="txtExamDescription" class="form-control form-control-solid" name="Exam_Description" value=""/>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -74,12 +74,12 @@
                                 <label class="fs-6 fw-bold form-label mt-3">
                                     <span>Remarks</span>
                                     <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                                        data-bs-original-title="Enter the contact's email." aria-label="Enter the contact's email.">
+                                        data-bs-original-title="Enter the important remarks." aria-label="Enter the important remarks.">
                                     </i>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="remarks" value="">
+                                <asp:TextBox ID="txtRemarks" runat="server" class="form-control form-control-solid" name="remarks" value=""/>
                                 <!--end::Input-->
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                             </div>
@@ -92,9 +92,9 @@
                             <div class="fv-row mb-7">
                                  <!--begin::Label-->
                                 <label class="fs-6 fw-bold form-label mt-3">
-                                    <span class="required">Visibility</span>
+                                    <span>Visibility</span>
                                     <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                                        data-bs-original-title="Enter the contact's email." aria-label="Enter the contact's email.">
+                                        data-bs-original-title="Are you want to Visible for everyone?" aria-label="Are you want to Visible for everyone?">
                                     </i>
                                 </label>
                                 <!--end::Label-->
@@ -106,10 +106,9 @@
                                        
                                     </div>
                                     <!--end::Label-->
-
                                     <!--begin::Switch-->
                                     <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked="checked" />
+                                        <input id="cbVisible" runat="server" class="form-check-input" type="checkbox" value="1" checked="checked" />
                                     </label>
                                     <!--end::Switch-->
                                 </div>
@@ -129,20 +128,20 @@
                     <!--begin::Action buttons-->
                     <div class="d-flex justify-content-end">
                         <!--begin::Button-->
-                        <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
+                        <asp:HyperLink runat="server" NavigateUrl="~/AdminPanel/Exams/ExamList.aspx" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</asp:HyperLink>
                         <!--end::Button-->
                         <!--begin::Button-->
-                        <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
-                            <span class="indicator-label">Save</span>
+                        <asp:Button runat="server" ID="btnSave" type="submit" data-kt-contacts-type="submit" Text="Save" class="btn btn-primary" OnClick="btnSave_Click">
+                            
+                        </asp:Button>
                             <span class="indicator-progress">Please wait...
 															<span class="spinner-border spinner-border-sm align-middle ms-2">
                                 </span></span>
-                        </button>
                         <!--end::Button-->
                     </div>
                     <!--end::Action buttons-->
                     <div></div>
-                </form>
+                </div>
                 <!--end::Form-->
             </div>
             <!--end::Card body-->
