@@ -6,9 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
 
-    <!--begin::Tables Widget 12-->
     <div class="card mb-5 mb-xl-8">
-        <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label fw-bolder fs-3 mb-1">Exams</span>
@@ -18,12 +16,8 @@
                 <asp:HyperLink class="btn btn-sm btn-light-success btn-active-light-primary" runat="server" ID="hlAdd" NavigateUrl= "~/AdminPanel/Exams/AddEditExam.aspx" >Add</asp:HyperLink>
             </div>
         </div>
-        <!--end::Header-->
         <div class="card-body py-3">
-            <!--begin::Table container-->
             <div class="table-responsive">
-                <!--begin::Table-->
-
                 <asp:GridView ID="gvExamList" CssClass="table align-middle gs-0 gy-4" runat="server"
                     OnRowCommand="gvExamList_RowCommand" AutoGenerateColumns="false" BorderWidth="0">
 

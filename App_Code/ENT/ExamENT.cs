@@ -5,17 +5,17 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for CategoryENT
+/// Summary description for ExamENT
 /// </summary>
 /// 
 
 namespace MCQProject
 {
-    public class CategoryENT
+    public class ExamENT
     {
 
         #region Constructor
-        public CategoryENT()
+        public ExamENT()
         {
             //
             // TODO: Add constructor logic here

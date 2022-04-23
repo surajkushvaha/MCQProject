@@ -34,6 +34,7 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
         SqlString Description = SqlString.Null;
         SqlString Remarks = SqlString.Null;
         SqlBoolean IsActive = cbVisible.Checked;
+
         if (txtExamName.Text.ToString().Trim() != "")
             ExamName = txtExamName.Text.ToString().Trim();
         if (txtExamDescription.Text.ToString().Trim() != "")
