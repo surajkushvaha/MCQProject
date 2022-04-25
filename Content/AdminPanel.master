@@ -28,11 +28,17 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
-            style="--kt-toolbar-height: 55px; --kt-toolbar-height-tablet-and-mobile: 55px" runat="server">
+    
+    <body>
+<form id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+            style="--kt-toolbar-height: 55px; --kt-toolbar-height-tablet-and-mobile: 55px" runat="server">'
 
-            <iframe class="loader" src='<%= ResolveUrl("~/Content/Loader.html") %>'></iframe>
-            <style>
+    <div id="statusPopup" style="display: none; z-index: 1000; left: 49%; top: 49%;">
+        <div>              
+           <iframe class="loader" src='<%= ResolveUrl("~/Content/Loader.html") %>'></iframe>
+        </div>
+    </div>
+           <%-- <style>
                 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
                 .loader {
@@ -48,6 +54,19 @@
                     z-index: 99999;
                 }
             </style>
+    
+            <script>
+                const loader = document.querySelector(".loader");
+                window.onload = function () {
+                    setTimeout(function () {
+                        loader.style.opacity = "0";
+                        setTimeout(function () {
+                            loader.style.display = "none";
+                        }, 500);
+                    }, 1500);
+                }
+
+            </script>  --%>
 
 
             <!--begin::Main-->
@@ -253,7 +272,7 @@
                                         </asp:HyperLink>
                                     </div>
                                     <div class="menu-item menu-accordion">
-                                        <asp:HyperLink runat="server" CssClass="menu-link" href="~/AdminPanel/Topics/TopicList.aspx">
+                                        <asp:HyperLink runat="server" CssClass="menu-link" NavigateUrl="~/AdminPanel/Topics/TopicList.aspx">
                                         <span class="menu-icon">
                                             <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
                                             <span class="svg-icon svg-icon-2">
@@ -479,8 +498,9 @@
 
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-5">
-                                                    <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="menu-link px-5">
-                                                        Sign Out</a>
+                                                    <asp:Button runat="server" BorderWidth="0" OnClick="btnLogOut_Click" ID="btnLogOut" Text="Sign Out"  CssClass="menu-link px-5">
+                                                        </asp:Button>
+                                                    
                                                 </div>
                                                 <!--end::Menu item-->
 
@@ -504,11 +524,11 @@
                                 <!--begin::Container-->
                                 <div id="kt_content_container" class="container-xxl">
                                     <!--begin::Post-->
-                                                    <form id="form1" runat="server">
+<%--                                                    <form id="form1" runat="server">--%>
 
                                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                     </asp:ContentPlaceHolder>
-                                                            </form>
+                                                            <%--</form>--%>
 
                                     <!--end::Post-->
                                 </div>
@@ -524,21 +544,21 @@
                                 <!--begin::Copyright-->
                                 <div class="text-dark order-2 order-md-1">
                                     <span class="text-muted fw-bold me-1">2022©</span>
-                                    <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">
-                                        Keenthemes</a>
+                                    <a href="https://darshan.ac.in" target="_blank" class="text-gray-800 text-hover-primary">
+                                        Darshan University | 190540107116</a>
                                 </div>
                                 <!--end::Copyright-->
                                 <!--begin::Menu-->
                                 <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
                                     <li class="menu-item">
-                                        <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+                                        <a href="http://aswdc.in/About-Us" target="_blank" class="menu-link px-2">About</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+                                        <a href="http://aswdc.in/Contact-Us" target="_blank" class="menu-link px-2">Support</a>
                                     </li>
-                                    <li class="menu-item">
+                                    <%--<li class="menu-item">
                                         <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
-                                    </li>
+                                    </li>--%>
                                 </ul>
                                 <!--end::Menu-->
                             </div>
@@ -570,19 +590,9 @@
                 <!--end::Svg Icon-->
             </div>
 
-            <script>
-                const loader = document.querySelector(".loader");
-                window.onload = function () {
-                    setTimeout(function () {
-                        loader.style.opacity = "0";
-                        setTimeout(function () {
-                            loader.style.display = "none";
-                        }, 500);
-                    }, 1500);
-                }
-
-            </script>
-            <!--begin::Javascript-->
+ 
+</form>
+                   <!--begin::Javascript-->
 <%--           <script>var hostUrl = "./Content/";</script>--%>
             <!--begin::Global Javascript Bundle(used by all pages)-->
             <script  src='<%= ResolveUrl("~/Content/plugins/global/plugins.bundle.js") %>'></script>
@@ -607,6 +617,31 @@
 
     <!--end::Scrolltop-->
 
+     <script type="text/javascript">
 
-</body>
+         if (Sys != null) {
+             Sys.Application.add_load(AppLoad);
+         }
+
+         function AppLoad() {
+             Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(beginRequest);
+             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequest);
+
+             function beginRequest(sender, args) {
+                 // show the popup
+
+
+                 document.getElementById("statusPopup").style.position = "fixed";
+                 document.getElementById("statusPopup").style.display = "";
+
+             }
+
+             function endRequest(sender, args) {
+                 document.getElementById("statusPopup").style.display = "none";
+                 seconds = 60 * 18;
+             }
+         }
+
+</script>
+        </body>
 </html>

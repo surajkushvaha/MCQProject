@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCQProject;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -29,52 +30,72 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        SqlInt32 ExamCategoryID = 0;
-        SqlString ExamName =SqlString.Null;
-        SqlString Description = SqlString.Null;
-        SqlString Remarks = SqlString.Null;
-        SqlBoolean IsActive = cbVisible.Checked;
 
-        if (txtExamName.Text.ToString().Trim() != "")
-            ExamName = txtExamName.Text.ToString().Trim();
-        if (txtExamDescription.Text.ToString().Trim() != "")
-            Description = txtExamDescription.Text.ToString().Trim();
-        if (txtRemarks.Text.ToString().Trim() != "")
-            Remarks = txtRemarks.Text.ToString().Trim();
-        
+        String ErrorMessage = "";
 
-        using (SqlConnection objCon = new SqlConnection(ConfigurationManager.ConnectionStrings["MCQProjectConnectionString"].ConnectionString))
+        if (txtExamName.Text.ToString().Trim() == "")
+            ErrorMessage += "- Enter Exam Name </br>";
+        if (txtExamDescription.Text.ToString().Trim() == "")
+            ErrorMessage += "- Enter Description </br>";
+        if(ErrorMessage!="")
         {
-            if (objCon.State != ConnectionState.Open)
-                objCon.Open();
-            using (SqlCommand objCmd = objCon.CreateCommand())
-            {
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.Parameters.AddWithValue("@ExamCategoryName", ExamName);
-                objCmd.Parameters.AddWithValue("@Description", Description);
-                objCmd.Parameters.AddWithValue("@Remarks", Remarks);
-                objCmd.Parameters.AddWithValue("@IsActive", IsActive);
-                if (Request.QueryString["ExamID"] != null)
-                {
-                    ExamCategoryID = Convert.ToInt32(Request.QueryString["ExamID"].ToString().Trim());
-                    objCmd.Parameters.AddWithValue("@ExamCategoryID", ExamCategoryID);
-                    objCmd.CommandText = "[PR_ExamCategoryTable_Update]";
-                    objCmd.ExecuteNonQuery();
-                    Response.Redirect("~/AdminPanel/Exams/ExamList.aspx");
-                }
-                else
-                {
-                    objCmd.CommandText="[PR_ExamCategoryTable_Insert]";
-                    objCmd.ExecuteNonQuery();
-                    clearFields();
-                }
-                
-            }
-            if (objCon.State == ConnectionState.Open)
-                objCon.Close();
+            msgDanger.InnerText = ErrorMessage;
+            blockDanger.Visible = true;
+            return;
         }
 
 
+        ExamENT entExam = new ExamENT();
+        ExamBAL balExam = new ExamBAL();
+
+
+        SqlInt32 ExamCategoryID = 0;
+        SqlString ExamName = SqlString.Null;
+        SqlString Description = SqlString.Null;
+        SqlString Remarks = SqlString.Null;
+        if (txtExamName.Text.ToString().Trim() != "")
+           entExam.CategoryName = txtExamName.Text.ToString().Trim();
+        if (txtExamDescription.Text.ToString().Trim() != "")
+           entExam.Description = txtExamDescription.Text.ToString().Trim();
+         
+        entExam.Remarks = txtRemarks.Text.ToString().Trim();
+
+        entExam.IsActive = cbVisible.Checked;
+
+         if (Request.QueryString["ExamID"] != null)
+         {
+             SqlInt32 ExamID = Convert.ToInt32(Request.QueryString["ExamID"]);
+             entExam.CategoryID = ExamID;
+             if (balExam.Update(entExam))
+             {
+                 clearFields();
+                 Response.Redirect("~/AdminPanel/Exams/ExamList.aspx");
+
+             }
+             else
+             {
+                 //message
+                 msgDanger.InnerText = balExam.Message;
+                 blockDanger.Visible = true;
+             }
+         }
+         else
+         {
+             if (balExam.Insert(entExam))
+             {
+                 clearFields();
+                 msgSuccess.InnerText = "Data Inserted Successfully.";
+                 blockSuccess.Visible = true;
+                 //Message
+             }
+             else
+             {
+                 //Message
+                 msgDanger.InnerText = balExam.Message;
+                 blockDanger.Visible = true;
+             }
+         }
+           
     }
 
     private void clearFields()
@@ -86,36 +107,30 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
     }
     private void fillData(string ID)
     {
-        using (SqlConnection objCon = new SqlConnection(ConfigurationManager.ConnectionStrings["MCQProjectConnectionString"].ConnectionString))
-        {
-            if (objCon.State != ConnectionState.Open)
-                objCon.Open();
-            using (SqlCommand objCmd = objCon.CreateCommand())
-            {
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "[PR_ExamCategoryTable_SelectByPK]";
-                objCmd.Parameters.AddWithValue("@ExamCategoryID", Convert.ToInt32(ID));
-                using (SqlDataReader objSDR = objCmd.ExecuteReader())
-                {
-                    if (objSDR.HasRows) { 
-                        while(objSDR.Read()){
-                            if (!objSDR["ExamCategoryName"].Equals(DBNull.Value))
-                                txtExamName.Text = objSDR["ExamCategoryName"].ToString().Trim();
-                            if (!objSDR["Description"].Equals(DBNull.Value))
-                                txtExamDescription.Text = objSDR["Description"].ToString().Trim();
-                            if (!objSDR["Remarks"].Equals(DBNull.Value))
-                                txtRemarks.Text = objSDR["Remarks"].ToString().Trim();
-                            if (objSDR["IsActive"].Equals(true))
-                                cbVisible.Checked = true;
-                            else
-                                cbVisible.Checked = false;
-                        }
+        ExamBAL balExam = new ExamBAL();
+        ExamENT entExam = new ExamENT();
 
-                    }
-                }
-            }
-            if (objCon.State == ConnectionState.Open)
-                objCon.Close();
+        entExam = balExam.selectByPK(ID);
+
+        if (balExam.Message != null && balExam.Message != "")
+        {
+            //Message
+            msgDanger.InnerText = balExam.Message;
+            blockDanger.Visible = true;
+            return;
         }
+       if (entExam.CategoryName  != null && entExam.CategoryName != "")
+           txtExamName.Text = entExam.CategoryName .ToString().Trim();
+       if (entExam.Description !=null && entExam.Description != "")
+           txtExamDescription.Text = entExam.Description.ToString().Trim();
+       if (entExam.Remarks != null && entExam.Remarks !="")
+           txtRemarks.Text = entExam.Remarks.ToString().Trim();
+       if (entExam.IsActive.Equals(true))
+           cbVisible.Checked = true;
+       else
+           cbVisible.Checked = false;
+
+       
+                      
     }
 }

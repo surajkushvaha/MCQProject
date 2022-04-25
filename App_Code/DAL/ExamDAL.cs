@@ -53,7 +53,7 @@ namespace MCQProject{
                         objCmd.Parameters.AddWithValue("@Remarks", entExam.Remarks);
                         objCmd.Parameters.AddWithValue("@IsActive", entExam.IsActive);
                         objCmd.CommandText = "[PR_ExamCategoryTable_Insert]";
-                        objCmd.ExecuteNonQuery();                    
+                        objCmd.ExecuteNonQuery();
                         return true;
                     }
                     catch (SqlException sqlex)
@@ -117,6 +117,44 @@ namespace MCQProject{
         }
         #endregion Update
 
+        #region Delete 
+        public Boolean Delete(string ID)
+        {
+            using (SqlConnection objCon = new SqlConnection(ConnectionString))
+            {
+                if (objCon.State != ConnectionState.Open)
+                    objCon.Open();
+                using (SqlCommand objCmd = objCon.CreateCommand())
+                {
+                    try
+                    {
+                        objCmd.CommandType = CommandType.StoredProcedure;
+
+                        objCmd.Parameters.AddWithValue("@ExamCategoryID", Convert.ToInt32(ID));
+                        objCmd.CommandText = "[PR_ExamCategoryTable_Delete]";
+                        objCmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.Message;
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                        return false;
+                    }
+                    finally
+                    {
+                        if (objCon.State == ConnectionState.Open)
+                            objCon.Close();
+                    }
+                }
+            }
+        }
+        #endregion Delete
+
         #region SelectAll
         public DataTable selectAll()
         {
@@ -157,7 +195,7 @@ namespace MCQProject{
                 
             }
         }
-        #endregion SelectALl
+        #endregion SelectAll
 
         #region SelectByPK
         public ExamENT selectByPK(string ID)

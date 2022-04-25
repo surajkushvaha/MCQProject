@@ -11,4 +11,8 @@ public partial class Content_AdminPanel : System.Web.UI.MasterPage
     {
         
     }
+    protected void btnLogOut_Click(object sender, EventArgs e)
+    {
+       // Response.Redirect("~/AdminPanel/Home.aspx");
+    }
 }

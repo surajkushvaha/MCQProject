@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCQProject;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,30 +13,49 @@ public partial class AdminPanel_Exams_ExamList : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        fillGridView();
+        if (!Page.IsPostBack)
+        { fillGridView(); }
     }
     private void fillGridView()
     {
-        using (SqlConnection objCon = new SqlConnection(ConfigurationManager.ConnectionStrings["MCQProjectConnectionString"].ConnectionString))
-        {
-            if (objCon.State != ConnectionState.Open)
-                objCon.Open();
-            using (SqlCommand objCmd = objCon.CreateCommand())
-            {
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "[PR_ExamCategoryTable_SelectAll]";
-                using (SqlDataReader objSDR = objCmd.ExecuteReader())
-                {
-                    gvExamList.DataSource = objSDR;
-                    gvExamList.DataBind();
-                }
-            }
-            if (objCon.State == ConnectionState.Open)
-                objCon.Close();
-        }
+         ExamBAL balExam = new ExamBAL();
+         DataTable dtExam = new DataTable();
+         dtExam = balExam.selectAll();
+         gvExamList.DataSource = dtExam;
+         gvExamList.DataBind();
+         if (!(dtExam != null && dtExam.Rows.Count > 0))
+         {
+             msgDanger.InnerText = "No Data Available";
+             blockDanger.Visible = true;
+         }
+         if(balExam.Message != null && balExam.Message != "")
+         {
+             msgDanger.InnerText = balExam.Message;
+             blockDanger.Visible = true;
+         }
+            
+        
     }
     protected void gvExamList_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-       
+        if (e.CommandName == "deleteRecord")
+        {
+            if (e.CommandArgument.ToString() != "")
+            {
+                ExamBAL balExam = new ExamBAL();
+                if (balExam.Delete(e.CommandArgument.ToString().Trim()))
+                {
+                    fillGridView();
+                    msgSuccess.InnerText = "Deleted Succefully";
+                    blockSuccess.Visible = true;
+                }
+                else
+                {
+                   //message
+                    msgDanger.InnerText = balExam.Message;
+                    blockDanger.Visible = true;
+                }
+            }
+        }
     }
 }

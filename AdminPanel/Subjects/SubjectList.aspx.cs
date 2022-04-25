@@ -12,30 +12,50 @@ public partial class AdminPanel_Subjects_SubjectList : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        fillGridView();
+        if (!Page.IsPostBack)
+        { fillGridView(); }
     }
     protected void gvSubjectList_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-
-    }
-    private void fillGridView(){
-        using (SqlConnection objCon = new SqlConnection(ConfigurationManager.ConnectionStrings["MCQProjectConnectionString"].ConnectionString))
+          if (e.CommandName == "deleteRecord")
         {
-            if (objCon.State != ConnectionState.Open)
-                objCon.Open();
-            using (SqlCommand objCmd = objCon.CreateCommand())
+            if (e.CommandArgument.ToString() != "")
             {
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "[PR_ExamSubjectTable_SelectAll]";
-                using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                SubjectBAL balSubject = new SubjectBAL();
+                if (balSubject.Delete(e.CommandArgument.ToString().Trim()))
                 {
-                    gvSubjectList.DataSource = objSDR;
-                    gvSubjectList.DataBind();
+                    fillGridView();
+                    msgSuccess.InnerText = "Deleted Succefully";
+                    blockSuccess.Visible = true;
+                }
+                else
+                {
+                   //message
+                    msgDanger.InnerText = balSubject.Message;
+                    blockDanger.Visible = true;
                 }
             }
-            if (objCon.State == ConnectionState.Open)
-                objCon.Close();
         }
+    }
+    
+    private void fillGridView(){
+        SubjectBAL balSubject = new SubjectBAL();
+        DataTable dtSubject = new DataTable();
+
+        dtSubject = balSubject.selectAll();
+        gvSubjectList.DataSource = dtSubject;
+        gvSubjectList.DataBind();
+        if (!(dtSubject != null && dtSubject.Rows.Count > 0))
+        {
+            msgDanger.InnerText = "No Data Available";
+            blockDanger.Visible = true;
+        }
+        if (balSubject.Message != null && balSubject.Message != "")
+        {
+            msgDanger.InnerText = balSubject.Message;
+            blockDanger.Visible = true;
+        }
+            
     }
 
 }
