@@ -64,6 +64,20 @@ namespace MCQProject
 
         }
         #endregion SelectByExamCategoryID
+
+        #region SelectByExamSubjectID
+        public static void selectByExamCategoryID(DropDownList ddl, string ID)
+        {
+
+            TopicBAL balSubject = new TopicBAL();
+            ddl.DataSource = balSubject.SelectByExamSubjectID(ID);
+            ddl.DataTextField = "ExamTopicName";
+            ddl.DataValueField = "ExamTopicID";
+            ddl.DataBind();
+            ddl.Items.Insert(0, new ListItem("Select Topic", "0"));
+
+        }
+        #endregion SelectByExamSubjectID
     }
 
 
