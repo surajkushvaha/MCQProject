@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
      <div id="blockDanger" runat="server" class="alert alert-danger d-flex align-items-center p-5 mb-10" visible="false">
-        <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
         <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none">
@@ -15,7 +14,6 @@
                     fill="black"></path>
             </svg>
         </span>
-        <!--end::Svg Icon-->
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-danger">Important</h4>
             <span id="msgDanger" runat="server"></span>
@@ -27,7 +25,6 @@
     </div>
 
     <div id="blockSuccess" runat="server" class="alert alert-primary d-flex align-items-center p-5 mb-10" visible="false">
-        <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
         <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none">
@@ -37,7 +34,6 @@
                     fill="black"></path>
             </svg>
         </span>
-        <!--end::Svg Icon-->
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-primary">Success</h4>
             <span id="msgSuccess" runat="server"></span>
@@ -48,13 +44,9 @@
         </button>
     </div>
     <div class="col-xl-12">
-        <!--begin::Contacts-->
-        <div class="card card-flush h-lg-100" id="kt_contacts_main">
-            <!--begin::Card header-->
+                <div class="card card-flush h-lg-100" id="kt_contacts_main">
             <div class="card-header pt-7" id="kt_chat_contacts_header">
-                <!--begin::Card title-->
                 <div class="card-title">
-                    <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
                     <span class="svg-icon svg-icon-1 me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -66,160 +58,93 @@
                             </path>
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->
-                    <h2>Add New Topic</h2>
+                    <h2><asp:Label ID="lblMode" runat="server">Add</asp:Label> Topic</h2>
                 </div>
-                <!--end::Card title-->
             </div>
-            <!--end::Card header-->
-            <!--begin::Card body-->
             <div class="card-body pt-5">
-                <!--begin::Form-->
-                <form id="kt_ecommerce_settings_general_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                    action="#">
-                    <!--begin::Row-->
+                <div id="kt_ecommerce_settings_general_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
-                        <!--begin::Col-->
                         <div class="col" data-select2-id="select2-data-123-07xa">
-                            <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-bold form-label mt-3">
                                     <span class="required">Exam Name</span>
                                 </label>
-                                <!--end::Label-->
                                 <div class="w-100" data-select2-id="select2-data-122-g4yb">
-                                    <!--begin::Select2-->
-                                    <select class="form-select form-select-solid" name="Exam">
-                                        <option value="-1">Select a Exam</option>
-
-                                    </select><!--end::Select2-->
+                                    <asp:DropDownList ID="ddlExam" runat="server" class="form-select form-select-solid" AutoPostBack="true" name="Exam" OnSelectedIndexChanged="ddlExam_SelectedIndexChanged">                                        
+                                    </asp:DropDownList>
                                 </div>
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                             </div>
-                            <!--end::Input group-->
                         </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
                         <div class="col" data-select2-id="select2-data-123-07xa">
-                            <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-bold form-label mt-3">
                                     <span class="required">Subject Name</span>
                                 </label>
-                                <!--end::Label-->
                                 <div class="w-100" data-select2-id="select2-data-122-g4yb">
-                                    <!--begin::Select2-->
-                                    <select class="form-select form-select-solid" name="Subject">
-                                        <option value="-1">Select a Subject</option>
-
-                                    </select><!--end::Select2-->
+                                    <asp:DropDownList ID="ddlSubject" runat="server" class="form-select form-select-solid" name="Subject">                                        
+                                    </asp:DropDownList>
                                 </div>
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                             </div>
-                            <!--end::Input group-->
                         </div>
-                        <!--end::Col-->
                     </div>
-                    <!--end::Row-->
-                    <!--begin::Input group-->
                     <div class="fv-row mb-7 fv-plugins-icon-container">
-                        <!--begin::Label-->
                         <label class="fs-6 fw-bold form-label mt-3">
                             <span class="required">Topic Name</span>
                             <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
                                 data-bs-original-title="Enter the contact's name." aria-label="Enter the contact's name.">
                             </i>
                         </label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="name" value="">
-                        <!--end::Input-->
+                        <asp:TextBox ID="txtTopicName" runat="server"  CssClass="form-control form-control-solid" name="Topic_Name" value=""/>
                         <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
-                    <!--end::Input group-->
-                      <!--begin::Row-->
                     <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
-                        <!--begin::Col-->
                         <div class="col">
-                            <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-bold form-label mt-3">
                                     <span>Remarks</span>
                                     <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
                                         data-bs-original-title="Enter the contact's email." aria-label="Enter the contact's email.">
                                     </i>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="remarks" value="">
-                                <!--end::Input-->
+                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control form-control-solid" name="Remarks" value=""/>
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                             </div>
-                            <!--end::Input group-->
                         </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
                         <div class="col">
-                            <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                 <!--begin::Label-->
                                 <label class="fs-6 fw-bold form-label mt-3">
-                                    <span class="required">Visibility</span>
+                                    <span>Visibility</span>
                                     <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                                        data-bs-original-title="Enter the contact's email." aria-label="Enter the contact's email.">
+                                        data-bs-original-title="Select the Visibility." aria-label="Select the Visibility.">
                                     </i>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input group-->
                                 <div class="d-flex flex-stack w-lg-50">
-                                    <!--begin::Label-->
                                     <div class="me-5">
                                         <label class="fs-8 fw-bold form-label">Are you want to Visible for everyone?</label>
-                                       
                                     </div>
-                                    <!--end::Label-->
-
-                                    <!--begin::Switch-->
                                     <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked="checked" />
+                                        <input id="cbVisible" runat="server" class="form-check-input" type="checkbox" value="1"  />
                                     </label>
-                                    <!--end::Switch-->
                                 </div>
-                                <!--end::Input group-->
                             </div>
-                            <!--end::Input group-->
                         </div>
-                        <!--end::Col-->
+                        </div>
                     </div>
-                    <!--end::Row-->
-                    <!--begin::Separator-->
                     <div class="separator mb-6"></div>
-                    <!--end::Separator-->
-                    <!--begin::Action buttons-->
                     <div class="d-flex justify-content-end">
-                        <!--begin::Button-->
-                        <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
-                        <!--end::Button-->
-                        <!--begin::Button-->
-                        <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
-                            <span class="indicator-label">Save</span>
+                        <asp:HyperLink runat="server" NavigateUrl="~/AdminPanel/Topics/TopicList.aspx" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</asp:HyperLink>
+                        <asp:Button runat="server" ID="btnSave" Text="Save" class="btn btn-primary" OnClick="btnSave_Click">
+                            
+                        </asp:Button>
                             <span class="indicator-progress">Please wait...
-															<span class="spinner-border spinner-border-sm align-middle ms-2">
-                                </span></span>
-                        </button>
-                        <!--end::Button-->
+							    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
                     </div>
-                    <!--end::Action buttons-->
                     <div></div>
-                </form>
-                <!--end::Form-->
+                </div>
             </div>
-            <!--end::Card body-->
-        </div>
-        <!--end::Contacts-->
         </div>
 </asp:Content>
 

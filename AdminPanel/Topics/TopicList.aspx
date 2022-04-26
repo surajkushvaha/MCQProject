@@ -4,399 +4,84 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+ <div id="blockDanger" runat="server" class="alert alert-danger d-flex align-items-center p-5 mb-10" visible="false">
+        <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none">
+                <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                    fill="black"></path>
+                <path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z"
+                    fill="black"></path>
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+        <div class="d-flex flex-column">
+            <h4 class="mb-1 text-danger">Important</h4>
+            <span id="msgDanger" runat="server"></span>
+        </div>
+        <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+            data-bs-dismiss="alert">
+            <i class="bi bi-x fs-1 text-danger"></i>
+        </button>
+    </div>
 
-    <!--begin::Tables Widget 12-->
+    <div id="blockSuccess" runat="server" class="alert alert-primary d-flex align-items-center p-5 mb-10" visible="false">
+        <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none">
+                <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                    fill="black"></path>
+                <path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z"
+                    fill="black"></path>
+            </svg>
+        </span>
+        <div class="d-flex flex-column">
+            <h4 class="mb-1 text-primary">Success</h4>
+            <span id="msgSuccess" runat="server"></span>
+        </div>
+        <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+            data-bs-dismiss="alert">
+            <i class="bi bi-x fs-1 text-primary"></i>
+        </button>
+    </div>
     <div class="card mb-5 mb-xl-8">
-        <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder fs-3 mb-1">Member Statistics</span>
-                <span class="text-muted mt-1 fw-bold fs-7">Over 500 new members</span>
+                <span class="card-label fw-bolder fs-3 mb-1">Topic</span>
+                <span class="text-muted mt-1 fw-bold fs-7">List of Topics</span>
             </h3>
             <div class="card-toolbar">
-                <!--begin::Menu-->
-                <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
-                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                    <span class="svg-icon svg-icon-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                            </g>
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </button>
-                <!--begin::Menu 2-->
-                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px"
-                    data-kt-menu="true">
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <div class="menu-content fs-6 text-dark fw-bolder px-3 py-4">Quick Actions</div>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu separator-->
-                    <div class="separator mb-3 opacity-75"></div>
-                    <!--end::Menu separator-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <a href="#" class="menu-link px-3">New Ticket</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <a href="#" class="menu-link px-3">New Customer</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
-                        <!--begin::Menu item-->
-                        <a href="#" class="menu-link px-3">
-                            <span class="menu-title">New Group</span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <!--end::Menu item-->
-                        <!--begin::Menu sub-->
-                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-3">Admin Group</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-3">Staff Group</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="#" class="menu-link px-3">Member Group</a>
-                            </div>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu sub-->
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <a href="#" class="menu-link px-3">New Contact</a>
-                    </div>
-                    <!--end::Menu item-->
-                    <!--begin::Menu separator-->
-                    <div class="separator mt-3 opacity-75"></div>
-                    <!--end::Menu separator-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <div class="menu-content px-3 py-3">
-                            <a class="btn btn-primary btn-sm px-4" href="#">Generate Reports</a>
-                        </div>
-                    </div>
-                    <!--end::Menu item-->
-                </div>
-                <!--end::Menu 2-->
-                <!--end::Menu-->
+                <asp:HyperLink class="btn btn-sm btn-light-success btn-active-light-primary" runat="server" ID="hlAdd" NavigateUrl= "~/AdminPanel/Topics/AddEditTopic.aspx" >Add</asp:HyperLink>
             </div>
         </div>
-        <!--end::Header-->
-        <!--begin::Body-->
         <div class="card-body py-3">
-            <!--begin::Table container-->
             <div class="table-responsive">
-                <!--begin::Table-->
-                <table class="table align-middle gs-0 gy-4">
-                    <!--begin::Table head-->
-                    <thead>
-                        <tr class="fw-bolder text-muted bg-light">
-                            <th class="ps-4 min-w-300px rounded-start">Agent</th>
-                            <th class="min-w-125px">Earnings</th>
-                            <th class="min-w-125px">Comission</th>
-                            <th class="min-w-200px">Company</th>
-                            <th class="min-w-150px">Rating</th>
-                            <th class="min-w-200px text-end rounded-end"></th>
-                        </tr>
-                    </thead>
-                    <!--end::Table head-->
-                    <!--begin::Table body-->
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <span class="symbol-label bg-light">
-                                            <img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt="" />
-                                        </span>
-                                    </div>
-                                    <div class="d-flex justify-content-start flex-column">
-                                        <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Brad Simmons</a>
-                                        <span class="text-muted fw-bold text-muted d-block fs-7">HTML, JS, ReactJS</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Pending</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$5,400</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Web, UI/UX Design</span>
-                            </td>
-                            <td>
-                                <div class="rating">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                </div>
-                                <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">Best Rated</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">
-                                    View</a>
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">
-                                    Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <span class="symbol-label bg-light">
-                                            <img src="assets/media/svg/avatars/047-girl-25.svg" class="h-75 align-self-end" alt="" />
-                                        </span>
-                                    </div>
-                                    <div class="d-flex justify-content-start flex-column">
-                                        <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Lebron Wayde</a>
-                                        <span class="text-muted fw-bold text-muted d-block fs-7">PHP, Laravel, VueJS</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$8,750,000</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$7,400</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">Agoda</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Houses &amp; Hotels</span>
-                            </td>
-                            <td>
-                                <div class="rating">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                </div>
-                                <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">Above Avarage</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">
-                                    View</a>
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">
-                                    Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <span class="symbol-label bg-light">
-                                            <img src="assets/media/svg/avatars/006-girl-3.svg" class="h-75 align-self-end" alt="" />
-                                        </span>
-                                    </div>
-                                    <div class="d-flex justify-content-start flex-column">
-                                        <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Brad Simmons</a>
-                                        <span class="text-muted fw-bold text-muted d-block fs-7">HTML, JS, ReactJS</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">In Proccess</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$2,500</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Rejected</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">RoadGee</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
-                            </td>
-                            <td>
-                                <div class="rating">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                </div>
-                                <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">Best Rated</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">
-                                    View</a>
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">
-                                    Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <span class="symbol-label bg-light">
-                                            <img src="assets/media/svg/avatars/014-girl-7.svg" class="h-75 align-self-end" alt="" />
-                                        </span>
-                                    </div>
-                                    <div class="d-flex justify-content-start flex-column">
-                                        <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Natali Trump</a>
-                                        <span class="text-muted fw-bold text-muted d-block fs-7">HTML, JS, ReactJS</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$700,000</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Pending</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$7,760</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">The Hill</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Insurance</span>
-                            </td>
-                            <td>
-                                <div class="rating">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                </div>
-                                <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">Avarage</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">
-                                    View</a>
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">
-                                    Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <span class="symbol-label bg-light">
-                                            <img src="assets/media/svg/avatars/020-girl-11.svg" class="h-75 align-self-end" alt="" />
-                                        </span>
-                                    </div>
-                                    <div class="d-flex justify-content-start flex-column">
-                                        <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Jessie Clarcson</a>
-                                        <span class="text-muted fw-bold text-muted d-block fs-7">HTML, JS, ReactJS</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$1,320,000</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Pending</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$6,250</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">Intertico</a>
-                                <span class="text-muted fw-bold text-muted d-block fs-7">Web, UI/UX Design</span>
-                            </td>
-                            <td>
-                                <div class="rating">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="bi bi-star-fill fs-5"></i>
-                                    </div>
-                                </div>
-                                <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">Best Rated</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">
-                                    View</a>
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">
-                                    Edit</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <!--end::Table body-->
-                </table>
-                <!--end::Table-->
+                <asp:GridView ID="gvTopicList" CssClass="table align-middle gs-0 gy-4" runat="server"
+                    OnRowCommand="gvTopicList_RowCommand" AutoGenerateColumns="false" BorderWidth="0">
+                    <HeaderStyle CssClass="fw-bolder text-muted" />
+                    <RowStyle CssClass="text-dark fw-bolder text-hover-primary mb-1 fs-6" />
+                    <Columns>
+                        <asp:BoundField DataField="ExamTopicName" HeaderText="Topic Name" />
+                        <asp:BoundField DataField="ExamSubjectName" HeaderText="Subject Name" />
+                        <asp:BoundField DataField="ExamCategoryName" HeaderText="Exam Name" />
+                        <asp:BoundField DataField="IsActive" HeaderText="Visibility" />
+                        <asp:TemplateField HeaderText="Edit">
+                            <ItemTemplate>
+                                <asp:HyperLink runat="server" ID="hlEdit"
+                                    Text="Edit" CssClass="btn btn-sm  btn-light-info btn-active-light" NavigateUrl='<%# "~/AdminPanel/Topics/AddEditTopic.aspx?TopicID=" + Eval("ExamTopicID").ToString().Trim() %>'></asp:HyperLink>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
+                            <ItemTemplate>
+                                <asp:Button runat="server" ID="btnDelete" Text="Delete" CssClass="btn btn-sm btn-light-danger btn-active-danger"
+                                    CommandName="deleteRecord" CommandArgument='<%# Eval("ExamTopicID").ToString() %>' OnClientClick="javascript : return confirm('Are you sure you want to delete?')" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
-            <!--end::Table container-->
         </div>
-        <!--begin::Body-->
     </div>
-    <!--end::Tables Widget 12-->
-
 
 </asp:Content>
 

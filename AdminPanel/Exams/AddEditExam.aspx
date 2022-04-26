@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
      <div id="blockDanger" runat="server" class="alert alert-danger d-flex align-items-center p-5 mb-10" visible="false">
-        <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
         <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none">
@@ -15,7 +14,6 @@
                     fill="black"></path>
             </svg>
         </span>
-        <!--end::Svg Icon-->
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-danger">Important</h4>
             <span id="msgDanger" runat="server"></span>
@@ -27,7 +25,6 @@
     </div>
 
     <div id="blockSuccess" runat="server" class="alert alert-primary d-flex align-items-center p-5 mb-10" visible="false">
-        <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
         <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 fill="none">
@@ -37,7 +34,6 @@
                     fill="black"></path>
             </svg>
         </span>
-        <!--end::Svg Icon-->
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-primary">Success</h4>
             <span id="msgSuccess" runat="server"></span>

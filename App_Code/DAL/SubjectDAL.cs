@@ -304,5 +304,51 @@ namespace MCQProject
             }
         }
         #endregion SelectByExamCategoryID
+
+        #region SelectByExamTopicID
+        public DataTable SelectByExamTopicID(string ID)
+        {
+
+            using (SqlConnection objCon = new SqlConnection(ConnectionString))
+            {
+                if (objCon.State != ConnectionState.Open)
+                    objCon.Open();
+                DataTable dt = new DataTable();
+
+                using (SqlCommand objCmd = objCon.CreateCommand())
+                {
+                    try
+                    {
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "[PR_ExamSubjectTable_SelectByExamTopicID]";
+                        objCmd.Parameters.AddWithValue("@ExamTopicID", Convert.ToInt32(ID));
+                        using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                        {
+                            dt.Load(objSDR);
+                        }
+                        return dt;
+                    }
+
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.Message;
+                        return null;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                        return null;
+                    }
+                    finally
+                    {
+                        if (objCon.State == ConnectionState.Open)
+                            objCon.Close();
+                    }
+
+                }
+
+            }
+        }
+        #endregion SelectByExamTopicID
     }
 }

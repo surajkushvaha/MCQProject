@@ -11,12 +11,14 @@ using System.Web;
 /// </summary>
 public class TopicDAL:DatabaseConfig
 {
-	public TopicDAL()
+    #region Constructor
+    public TopicDAL()
 	{
 		//
 		// TODO: Add constructor logic here
 		//
 	}
+    #endregion Constructor
 
     #region Message
     protected string _Message;
@@ -46,6 +48,7 @@ public class TopicDAL:DatabaseConfig
                 {
                     objCmd.CommandType = CommandType.StoredProcedure;
                     objCmd.Parameters.AddWithValue("@ExamSubjectID", entTopic.SubjectID);
+
                     objCmd.Parameters.AddWithValue("@ExamTopicName", entTopic.TopicName);
                     objCmd.Parameters.AddWithValue("@Remarks", entTopic.Remarks);
                     objCmd.Parameters.AddWithValue("@IsActive", entTopic.IsActive);
@@ -300,4 +303,6 @@ public class TopicDAL:DatabaseConfig
         }
     }
     #endregion SelectByExamSubjectID
+
+
 }

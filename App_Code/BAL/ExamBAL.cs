@@ -121,6 +121,17 @@ namespace MCQProject
         }
         #endregion SelectForDropDown
 
+        #region SelectByExamSubjectID
+        public DataTable SelectByExamSubjectID(string ID)
+        {
+            ExamDAL dalExam = new ExamDAL();
+            DataTable dtExam = new DataTable();
 
+            dtExam = dalExam.SelectByExamSubjectID(ID);
+            Message = dalExam.Message;
+            return dtExam;
+            
+        }
+        #endregion SelectByExamSubjectID
     }
 }

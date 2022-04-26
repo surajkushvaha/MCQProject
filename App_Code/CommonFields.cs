@@ -66,7 +66,7 @@ namespace MCQProject
         #endregion SelectByExamCategoryID
 
         #region SelectByExamSubjectID
-        public static void selectByExamCategoryID(DropDownList ddl, string ID)
+        public static void selectByExamSubjectID(DropDownList ddl, string ID)
         {
 
             TopicBAL balSubject = new TopicBAL();
@@ -78,6 +78,33 @@ namespace MCQProject
 
         }
         #endregion SelectByExamSubjectID
+
+        #region SelectExamCategoryByExamSubjectID
+        public static void SelectExamCategoryByExamSubjectID(DropDownList ddl, string ID)
+        {
+
+            ExamBAL balSubject = new ExamBAL();
+            DataTable dt = new DataTable();
+            dt = balSubject.SelectByExamSubjectID(ID);
+            ddl.SelectedValue = dt.Rows[0].ItemArray[0].ToString().Trim();
+            //ddl.Items.Insert(0, new ListItem("Select Topic", "0"));
+
+        }
+        #endregion SelectExamCategoryByExamSubjectID
+
+
+        #region SelectSubjectCategoryByExamTopicID
+        public static void SelectSubjectCategoryByExamTopicID(DropDownList ddl, string ID)
+        {
+
+           SubjectBAL balSubject = new SubjectBAL();
+            DataTable dt = new DataTable();
+            dt = balSubject.SelectByExamTopicID(ID);
+            ddl.SelectedValue = dt.Columns[0].ToString().Trim();
+            //ddl.Items.Insert(0, new ListItem("Select Topic", "0"));
+
+        }
+        #endregion SelectSubjectCategoryByExamTopicID
     }
 
 

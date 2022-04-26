@@ -11,4 +11,8 @@ public partial class AdminPanel_Questions_AddEditQuestion : System.Web.UI.Page
     {
 
     }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -119,4 +119,15 @@ public class SubjectBAL
         
     }
     #endregion SelectByExamCategoryID
+
+    #region SelectByExamTopicID
+    public DataTable SelectByExamTopicID(string ID)
+    {
+        SubjectDAL dalSubject = new SubjectDAL();
+        DataTable dtSubject = new DataTable();
+        dtSubject = dalSubject.SelectByExamTopicID(ID);
+        Message = dalSubject.Message;
+        return dtSubject;
+    }
+    #endregion SelectByExamTopicID
 }
