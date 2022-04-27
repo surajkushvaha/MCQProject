@@ -10,12 +10,15 @@ using System.Web;
 /// </summary>
 public class TopicBAL
 {
-	public TopicBAL()
+    #region Constructor
+    public TopicBAL()
 	{
 		//
 		// TODO: Add constructor logic here
 		//
 	}
+    #endregion Constructor
+
     #region Message
     protected string _Message;
     public string Message

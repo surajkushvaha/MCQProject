@@ -17,23 +17,7 @@ public partial class AdminPanel_Questions_QuestionList : System.Web.UI.Page
 
     private void fillGridView()
     {
-        using (SqlConnection objCon = new SqlConnection(ConfigurationManager.ConnectionStrings["MCQProjectConnectionString"].ConnectionString))
-        {
-            if (objCon.State != ConnectionState.Open)
-                objCon.Open();
-            using (SqlCommand objCmd = objCon.CreateCommand())
-            {
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "[PR_ExamCategoryTable_SelectAll]";
-                using (SqlDataReader objSDR = objCmd.ExecuteReader())
-                {
-                    gvQuestionList.DataSource = objSDR;
-                    gvQuestionList.DataBind();
-                }
-            }
-            if (objCon.State == ConnectionState.Open)
-                objCon.Close();
-        }
+        
     }
     protected void gvQuestionList_RowCommand(object sender, GridViewCommandEventArgs e)
     {

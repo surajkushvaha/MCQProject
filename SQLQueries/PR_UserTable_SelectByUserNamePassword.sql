@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[PR_UserTable_SelectByUserNamePassword]
+ALTER PROCEDURE [dbo].[PR_UserTable_SelectByUserNamePassword]
 @Email varchar(100),
 @Password varchar(100)
 AS
@@ -8,7 +8,11 @@ SELECT
 	[dbo].[UserTable].[Password],
 	[dbo].[UserTable].[DisplayName],
 	[dbo].[UserTable].[MobileNo],
-	[dbo].[UserTable].[Address]
+	[dbo].[UserTable].[Address],
+	[dbo].[UserTable].[PhotoPath],
+	[dbo].[UserTable].[PhotoFileType],
+	[dbo].[UserTable].[PhotoFileSize],
+	[dbo].[UserTable].[PhotoFileExtension]
 	
-From [dbo].[UserTable]
-Where [dbo].[UserTable].[Email] = @Email and [dbo].[UserTable].[Password] = @Password
+FROM [dbo].[UserTable]
+WHERE [dbo].[UserTable].[Email] = @Email AND [dbo].[UserTable].[Password] = @Password

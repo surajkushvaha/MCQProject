@@ -28,6 +28,7 @@ public partial class AdminPanel_Account_Profile : System.Web.UI.Page
     #region fill data
     private void fillData()
     {
+        string ImageDefaultUrl = "~/Content/media/svg/avatars/blank.svg";
         UserBAL balUser = new UserBAL();
         UserENT entUser = new UserENT();
 
@@ -69,7 +70,14 @@ public partial class AdminPanel_Account_Profile : System.Web.UI.Page
             {
                 lblShowAddress.Text = "Address Not Provided By You";
             }
-
+            if (!entUser.PhotoPath.IsNull)
+            {
+                imgProfile.ImageUrl =ResolveUrl(entUser.PhotoPath.ToString());
+            }
+            else
+            {
+                imgProfile.ImageUrl = ResolveUrl(ImageDefaultUrl);
+            }
             if (!entUser.Created.IsNull)
             {
                 lblShowCreated.Text = entUser.Created.ToString().Trim();

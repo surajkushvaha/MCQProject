@@ -97,6 +97,70 @@ namespace MCQProject
         }
         #endregion MobileNo
 
+        #region PhotoPath
+        protected SqlString _PhotoPath;
+
+        public SqlString PhotoPath
+        {
+            get
+            {
+                return _PhotoPath;
+            }
+            set
+            {
+                _PhotoPath = value;
+            }
+        }
+        #endregion PhotoPath
+
+        #region FileType
+        protected SqlString _PhotoFileType;
+
+        public SqlString PhotoFileType
+        {
+            get
+            {
+                return _PhotoFileType;
+            }
+            set
+            {
+                _PhotoFileType = value;
+            }
+        }
+        #endregion FileType
+
+        #region FileExtension
+        protected SqlString _PhotoFileExtension;
+
+        public SqlString PhotoFileExtension
+        {
+            get
+            {
+                return _PhotoFileExtension;
+            }
+            set
+            {
+                _PhotoFileExtension = value;
+            }
+        }
+        #endregion FileType
+
+        #region FileSize
+        protected SqlString _PhotoFileSize;
+
+        public SqlString PhotoFileSize
+        {
+            get
+            {
+                return _PhotoFileSize;
+            }
+            set
+            {
+                _PhotoFileSize = value;
+            }
+        }
+        #endregion FileSize
+
         #region Address
         protected SqlString _Address;
         public SqlString Address

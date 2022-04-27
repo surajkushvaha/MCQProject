@@ -37,7 +37,7 @@ namespace MCQProject
         }
         #endregion Local Variable
 
-        #region Insert Operation
+        #region Insert 
         public Boolean Insert(UserENT entUser)
         {
             using (SqlConnection objConn = new SqlConnection(ConnectionString))
@@ -58,6 +58,10 @@ namespace MCQProject
                         objCmd.Parameters.Add("@DisplayName", SqlDbType.VarChar).Value = entUser.DisplayName;
                         objCmd.Parameters.Add("@MobileNo", SqlDbType.VarChar).Value = entUser.MobileNo;
                         objCmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = entUser.Address;
+                        objCmd.Parameters.Add("@PhotoPath", SqlDbType.VarChar).Value = entUser.PhotoPath;
+                        objCmd.Parameters.Add("@PhotoFileType", SqlDbType.VarChar).Value = entUser.PhotoFileType;
+                        objCmd.Parameters.Add("@PhotoFileSize", SqlDbType.VarChar).Value = entUser.PhotoFileSize;
+                        objCmd.Parameters.Add("@PhotoFileExtension", SqlDbType.VarChar).Value = entUser.PhotoFileExtension;
 
 
                         #endregion Prepare Command
@@ -86,9 +90,9 @@ namespace MCQProject
             }
         }
 
-        #endregion Insert Operation
+        #endregion Insert 
 
-        #region Update Operation
+        #region Update 
         public Boolean Update(UserENT entUser)
         {
             using (SqlConnection objConn = new SqlConnection(ConnectionString))
@@ -111,7 +115,10 @@ namespace MCQProject
                         objCmd.Parameters.Add("@DisplayName", SqlDbType.VarChar).Value = entUser.DisplayName;
                         objCmd.Parameters.Add("@MobileNo", SqlDbType.VarChar).Value = entUser.MobileNo;
                         objCmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = entUser.Address;
-
+                        objCmd.Parameters.Add("@PhotoPath", SqlDbType.VarChar).Value = entUser.PhotoPath;
+                        objCmd.Parameters.Add("@PhotoFileType", SqlDbType.VarChar).Value = entUser.PhotoFileType;
+                        objCmd.Parameters.Add("@PhotoFileSize", SqlDbType.VarChar).Value = entUser.PhotoFileSize;
+                        objCmd.Parameters.Add("@PhotoFileExtension", SqlDbType.VarChar).Value = entUser.PhotoFileExtension;
                         #endregion Prepare Command
 
 
@@ -138,9 +145,9 @@ namespace MCQProject
                 }
             }
         }
-        #endregion Update Operation       
+        #endregion Update        
 
-        #region Check For Availability Email
+        #region CheckForInsert
         public Boolean CheckForInsert(SqlString Email)
         {
             using (SqlConnection objConn = new SqlConnection(ConnectionString))
@@ -191,9 +198,9 @@ namespace MCQProject
                 }
             }
         }
-        #endregion Check For Availability Email
+        #endregion CheckForInsert
 
-        #region Check For Password
+        #region CheckPassword
         public Boolean CheckPassword(SqlInt32 UserID,SqlString Password)
         {
             using (SqlConnection objConn = new SqlConnection(ConnectionString))
@@ -259,9 +266,9 @@ namespace MCQProject
                 }
             }
         }
-        #endregion Check For Password
+        #endregion CheckPassword
 
-        #region Select By UserID
+        #region SelectByUserID
         public UserENT SelectByUserID(SqlInt32 UserID)
         {
             using (SqlConnection objCon = new SqlConnection(ConnectionString))
@@ -307,6 +314,22 @@ namespace MCQProject
                                 {
                                     entUser.Address = objSDR["Address"].ToString().Trim();
                                 }
+                                if (!objSDR["PhotoPath"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoPath = objSDR["PhotoPath"].ToString().Trim();
+                                }
+                                if (!objSDR["PhotoFileType"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoFileType = objSDR["PhotoFileType"].ToString().Trim();
+                                }
+                                if (!objSDR["PhotoFileSize"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoFileSize = objSDR["PhotoFileSize"].ToString().Trim();
+                                }
+                                if (!objSDR["PhotoFileExtension"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoFileExtension = objSDR["PhotoFileExtension"].ToString().Trim();
+                                }
 
                                 if (!objSDR["Created"].Equals(DBNull.Value))
                                 {
@@ -341,9 +364,9 @@ namespace MCQProject
                 }
             }
         }
-        #endregion Select By UserID
+        #endregion SelectByUserID
 
-        #region Select By Email & Password
+        #region SelctByEmailPassword
         public UserENT SelctByEmailPassword(SqlString Email, SqlString Password)
         {
             using (SqlConnection objCon = new SqlConnection(ConnectionString))
@@ -393,7 +416,22 @@ namespace MCQProject
                                 {
                                     entUser.Address = objSDR["Address"].ToString().Trim();
                                 }
-
+                                if (!objSDR["PhotoPath"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoPath = objSDR["PhotoPath"].ToString().Trim();
+                                }
+                                if (!objSDR["PhotoFileType"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoFileType = objSDR["PhotoFileType"].ToString().Trim();
+                                }
+                                if (!objSDR["PhotoFileSize"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoFileSize = objSDR["PhotoFileSize"].ToString().Trim();
+                                }
+                                if (!objSDR["PhotoFileExtension"].Equals(DBNull.Value))
+                                {
+                                    entUser.PhotoFileExtension = objSDR["PhotoFileExtension"].ToString().Trim();
+                                }
                                 break;
                             }
                         }
@@ -424,7 +462,7 @@ namespace MCQProject
                 }
             }
         }
-        #endregion Select By Email & Password
+        #endregion SelctByEmailPassword
 
     }
 }

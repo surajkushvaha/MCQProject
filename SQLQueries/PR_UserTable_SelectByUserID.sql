@@ -1,12 +1,16 @@
-CREATE PROCEDURE [dbo].[PR_UserTable_SelectByUserID]
+ALTER PROCEDURE [dbo].[PR_UserTable_SelectByUserID]
 @UserID int
-as
-Select 
+AS
+SELECT 
 	[dbo].[UserTable].[Email], 
 	[dbo].[UserTable].[DisplayName],
 	[dbo].[UserTable].[MobileNo],
 	[dbo].[UserTable].[Address],
+	[dbo].[UserTable].[PhotoPath],
+	[dbo].[UserTable].[PhotoFileType],
+	[dbo].[UserTable].[PhotoFileSize],
+	[dbo].[UserTable].[PhotoFileExtension],
 	[dbo].[UserTable].[Created],
 	[dbo].[UserTable].[Modified] 
-From [dbo].[UserTable]
-where [dbo].[UserTable].[UserID] = @UserID
+FROM [dbo].[UserTable]
+WHERE [dbo].[UserTable].[UserID] = @UserID

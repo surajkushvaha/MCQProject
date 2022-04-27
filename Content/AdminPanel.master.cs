@@ -23,6 +23,19 @@ public partial class Content_AdminPanel : System.Web.UI.MasterPage
             {
                 lblEmail.Text = Session["Email"].ToString().Trim();
             }
+            if (Session["PhotoPath"] != null && Session["PhotoPath"].ToString().Trim() != "Null" && Session["PhotoPath"].ToString().Trim() != "")
+            {
+                string path = Session["PhotoPath"].ToString();
+                imgGlobalPhoto.ImageUrl = ResolveUrl(path);
+                
+                imgGlobalPhoto2.ImageUrl = ResolveUrl(path);
+            }
+            else
+            {
+                imgGlobalPhoto.ImageUrl = ResolveUrl("~/Content/media/svg/avatars/blank.svg");
+                imgGlobalPhoto2.ImageUrl = ResolveUrl("~/Content/media/svg/avatars/blank.svg");
+
+            }
         }
     }
     protected void btnLogout_Click(object sender, EventArgs e)

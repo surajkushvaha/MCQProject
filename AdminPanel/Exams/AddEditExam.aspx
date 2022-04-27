@@ -16,7 +16,7 @@
         </span>
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-danger">Important</h4>
-            <span id="msgDanger" runat="server"></span>
+            <span  id="msgDanger" runat="server" ></span>
         </div>
         <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
             data-bs-dismiss="alert">
