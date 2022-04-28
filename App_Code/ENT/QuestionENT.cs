@@ -38,8 +38,8 @@ namespace MCQProject{
         #endregion _QuestionID
 
         #region _Question
-        protected StringBuilder _Question;
-        public StringBuilder Question
+        protected string _Question;
+        public string Question
         {
             get
             {
@@ -53,8 +53,8 @@ namespace MCQProject{
         #endregion _Question
 
         #region _OptionA
-        protected StringBuilder _OptionA;
-        public StringBuilder OptionA
+        protected string _OptionA;
+        public string OptionA
         {
             get
             {
@@ -68,8 +68,8 @@ namespace MCQProject{
         #endregion _OptionA
 
         #region _OptionB
-        protected StringBuilder _OptionB;
-        public StringBuilder OptionB
+        protected string _OptionB;
+        public string OptionB
         {
             get
             {
@@ -83,8 +83,8 @@ namespace MCQProject{
         #endregion _OptionB
 
         #region _OptionC
-        protected StringBuilder _OptionC;
-        public StringBuilder OptionC
+        protected string _OptionC;
+        public string OptionC
         {
             get
             {
@@ -98,8 +98,8 @@ namespace MCQProject{
         #endregion _OptionC
 
         #region _OptionD
-        protected StringBuilder _OptionD;
-        public StringBuilder OptionD
+        protected string _OptionD;
+        public string OptionD
         {
             get
             {
@@ -113,8 +113,8 @@ namespace MCQProject{
         #endregion _OptionD
 
         #region _OptionE
-        protected StringBuilder _OptionE;
-        public StringBuilder OptionE
+        protected string _OptionE;
+        public string OptionE
         {
             get
             {
@@ -143,8 +143,8 @@ namespace MCQProject{
         #endregion _TrueOption
 
         #region _Solution
-        protected StringBuilder _Solution;
-        public StringBuilder Solution
+        protected string _Solution;
+        public string Solution
         {
             get
             {

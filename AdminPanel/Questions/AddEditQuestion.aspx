@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content/AdminPanel.master" AutoEventWireup="true"
-    CodeFile="AddEditQuestion.aspx.cs" Inherits="AdminPanel_Questions_AddEditQuestion" %>
+    CodeFile="AddEditQuestion.aspx.cs" Inherits="AdminPanel_Questions_AddEditQuestion" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -185,6 +185,15 @@
                         </label>
                         <asp:TextBox ID="txtOptionE" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
                             name="OptionE" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+
+                      <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span ">Soltion</span>
+                        </label>
+                        <asp:TextBox ID="txtSolution" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="Solution" value="" />
                         <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
 

@@ -60,7 +60,11 @@
                     <HeaderStyle CssClass="fw-bolder text-muted" />
                     <RowStyle CssClass="text-dark fw-bolder text-hover-primary mb-1 fs-6" />
                     <Columns>
-                        <asp:BoundField DataField="ExamQuestionName" HeaderText="Question Name" />
+                        <asp:TemplateField  HeaderText="Question">
+                            <ItemTemplate>
+                                <asp:Label runat="server" Text='<%# Eval("Question") %>' CssClass="fs-5 fw-light"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Detail">
                             <ItemTemplate>
                                 <asp:Label runat="server" Text='<%# "Topic : " + Eval("ExamTopicName") %>'></asp:Label></br>
@@ -71,7 +75,7 @@
                         <asp:BoundField DataField="IsActive" HeaderText="Visibility" />
                         <asp:TemplateField HeaderText="Edit">
                             <ItemTemplate>
-                                <asp:HyperLink runat="server" ID="btnEdit"
+                                <asp:HyperLink runat="server" ID="btnEdit" NavigateUrl='<%#"~/AdminPanel/Questions/AddEditQuestion.aspx?QuestionID="+ Eval("QuestionID").ToString().Trim() %>'
                                     Text="Edit" CssClass="btn btn-sm  btn-light-info btn-active-light"></asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -47,12 +48,19 @@ namespace MCQProject
                     try
                     {
                         objCmd.CommandType = CommandType.StoredProcedure;
-                        //objCmd.Parameters.AddWithValue("@ExamCategoryName", entExam.CategoryName);
-                        //objCmd.Parameters.AddWithValue("@Description", entExam.Description);
-                        //objCmd.Parameters.AddWithValue("@Remarks", entExam.Remarks);
-                        //objCmd.Parameters.AddWithValue("@IsActive", entExam.IsActive);
-                        //objCmd.CommandText = "[PR_ExamCategoryTable_Insert]";
-                        //objCmd.ExecuteNonQuery();
+                        objCmd.Parameters.AddWithValue("@Question", entQuestion.Question);
+                        objCmd.Parameters.AddWithValue("@OptionA", entQuestion.OptionA);
+                        objCmd.Parameters.AddWithValue("@OptionB", entQuestion.OptionB);
+                        objCmd.Parameters.AddWithValue("@OptionC", entQuestion.OptionC);
+                        objCmd.Parameters.AddWithValue("@OptionD", entQuestion.OptionD);
+                        objCmd.Parameters.AddWithValue("@OptionE", entQuestion.OptionE);
+                        objCmd.Parameters.AddWithValue("@TrueOption", entQuestion.TrueOption);
+                        objCmd.Parameters.AddWithValue("@Solution", entQuestion.Solution);
+                        objCmd.Parameters.AddWithValue("@ExamTopicID", entQuestion.ExamTopicID);
+                        objCmd.Parameters.AddWithValue("@Remarks", entQuestion.Remarks);
+                        objCmd.Parameters.AddWithValue("@IsActive", entQuestion.IsActive);
+                        objCmd.CommandText = "[PR_ExamQuestionTable_Insert]";
+                        objCmd.ExecuteNonQuery();
                         return true;
                     }
                     catch (SqlException sqlex)
@@ -87,13 +95,20 @@ namespace MCQProject
                     try
                     {
                         objCmd.CommandType = CommandType.StoredProcedure;
-                        //objCmd.Parameters.AddWithValue("@ExamCategoryName", entExam.CategoryName);
-                        //objCmd.Parameters.AddWithValue("@Description", entExam.Description);
-                        //objCmd.Parameters.AddWithValue("@Remarks", entExam.Remarks);
-                        //objCmd.Parameters.AddWithValue("@IsActive", entExam.IsActive);
-                        //objCmd.Parameters.AddWithValue("@ExamCategoryID", entExam.CategoryID);
-                        //objCmd.CommandText = "[PR_ExamCategoryTable_Update]";
-                        //objCmd.ExecuteNonQuery();
+                        objCmd.Parameters.AddWithValue("@QuestionID", entQuestion.QuestionID);
+                        objCmd.Parameters.AddWithValue("@Question", entQuestion.Question);
+                        objCmd.Parameters.AddWithValue("@OptionA", entQuestion.OptionA);
+                        objCmd.Parameters.AddWithValue("@OptionB", entQuestion.OptionB);
+                        objCmd.Parameters.AddWithValue("@OptionC", entQuestion.OptionC);
+                        objCmd.Parameters.AddWithValue("@OptionD", entQuestion.OptionD);
+                        objCmd.Parameters.AddWithValue("@OptionE", entQuestion.OptionE);
+                        objCmd.Parameters.AddWithValue("@TrueOption", entQuestion.TrueOption);
+                        objCmd.Parameters.AddWithValue("@Solution", entQuestion.Solution);
+                        objCmd.Parameters.AddWithValue("@ExamTopicID", entQuestion.ExamTopicID);
+                        objCmd.Parameters.AddWithValue("@Remarks", entQuestion.Remarks);
+                        objCmd.Parameters.AddWithValue("@IsActive", entQuestion.IsActive);
+                        objCmd.CommandText = "[PR_ExamQuestionTable_Update]";
+                        objCmd.ExecuteNonQuery();
                         return true;
                     }
                     catch (SqlException sqlex)
@@ -116,8 +131,46 @@ namespace MCQProject
         }
         #endregion Update
 
-        #region SelectAll
-        public DataTable selectAll()
+        #region Delete
+        public Boolean Delete(string ID)
+        {
+            using (SqlConnection objCon = new SqlConnection(ConnectionString))
+            {
+                if (objCon.State != ConnectionState.Open)
+                    objCon.Open();
+                using (SqlCommand objCmd = objCon.CreateCommand())
+                {
+                    try
+                    {
+                        objCmd.CommandType = CommandType.StoredProcedure;
+
+                        objCmd.Parameters.AddWithValue("@QuestionID", Convert.ToInt32(ID));
+                        objCmd.CommandText = "[PR_ExamQuestionTable_Delete]";
+                        objCmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.Message;
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                        return false;
+                    }
+                    finally
+                    {
+                        if (objCon.State == ConnectionState.Open)
+                            objCon.Close();
+                    }
+                }
+            }
+        }
+        #endregion Delete
+
+        #region selectForGrid
+        public DataTable selectForGrid()
         {
             using (SqlConnection objCon = new SqlConnection(ConnectionString))
             {
@@ -129,7 +182,7 @@ namespace MCQProject
                     try
                     {
                         objCmd.CommandType = CommandType.StoredProcedure;
-                       // objCmd.CommandText = "[PR_ExamCategoryTable_SelectAll]";
+                        objCmd.CommandText = "[PR_ExamQuestionTable_SelectForGrid]";
                         using (SqlDataReader objSDR = objCmd.ExecuteReader())
                         {
                             dt.Load(objSDR);
@@ -156,7 +209,7 @@ namespace MCQProject
 
             }
         }
-        #endregion SelectALl
+        #endregion selectForGrid
 
         #region SelectByPK
         public QuestionENT selectByPK(string ID)
@@ -171,24 +224,40 @@ namespace MCQProject
                     {
                         QuestionENT entQuestion = new QuestionENT();
                         objCmd.CommandType = CommandType.StoredProcedure;
-                        //objCmd.CommandText = "[PR_ExamCategoryTable_SelectByPK]";
-                        //objCmd.Parameters.AddWithValue("@ExamCategoryID", Convert.ToInt32(ID));
+                        objCmd.CommandText = "[PR_ExamQuestionTable_SelectByPK]";
+                        objCmd.Parameters.AddWithValue("@QuestionID", Convert.ToInt32(ID));
                         using (SqlDataReader objSDR = objCmd.ExecuteReader())
                         {
                             if (objSDR.HasRows)
                             {
                                 while (objSDR.Read())
                                 {
-                                    //if (!objSDR["ExamCategoryName"].Equals(DBNull.Value))
-                                    //    entExam.CategoryName = objSDR["ExamCategoryName"].ToString().Trim();
-                                    //if (!objSDR["Description"].Equals(DBNull.Value))
-                                    //    entExam.Description = objSDR["Description"].ToString().Trim();
-                                    //if (!objSDR["Remarks"].Equals(DBNull.Value))
-                                    //    entExam.Remarks = objSDR["Remarks"].ToString().Trim();
-                                    //if (objSDR["IsActive"].Equals(true))
-                                    //    entExam.IsActive = true;
-                                    //else
-                                    //    entExam.IsActive = false;
+                                    if (!objSDR["Question"].Equals(DBNull.Value))
+                                        entQuestion.Question = objSDR["Question"].ToString().Trim();
+                                    if (!objSDR["OptionA"].Equals(DBNull.Value))
+                                        entQuestion.OptionA = objSDR["OptionA"].ToString().Trim();
+                                    if (!objSDR["OptionB"].Equals(DBNull.Value))
+                                        entQuestion.OptionB = objSDR["OptionB"].ToString().Trim();
+                                    if (!objSDR["OptionC"].Equals(DBNull.Value))
+                                        entQuestion.OptionC = objSDR["OptionC"].ToString().Trim();
+                                    if (!objSDR["OptionD"].Equals(DBNull.Value))
+                                        entQuestion.OptionD = objSDR["OptionD"].ToString().Trim();
+                                    if (!objSDR["OptionE"].Equals(DBNull.Value))
+                                        entQuestion.OptionE = objSDR["OptionE"].ToString().Trim();
+                                    if (!objSDR["TrueOption"].Equals(DBNull.Value))
+                                        entQuestion.TrueOption = Convert.ToChar(objSDR["TrueOption"]);
+                                    if (!objSDR["Solution"].Equals(DBNull.Value))
+                                        entQuestion.Solution = objSDR["Solution"].ToString().Trim();
+                                    if (!objSDR["ExamTopicID"].Equals(DBNull.Value))
+                                        entQuestion.ExamTopicID = Convert.ToInt32(objSDR["ExamTopicID"]);
+                                   
+                                   
+                                    if (!objSDR["Remarks"].Equals(DBNull.Value))
+                                        entQuestion.Remarks = objSDR["Remarks"].ToString().Trim();
+                                    if (objSDR["IsActive"].Equals(true))
+                                        entQuestion.IsActive = true;
+                                    else
+                                        entQuestion.IsActive = false;
                                 }
 
                             }
