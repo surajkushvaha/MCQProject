@@ -15,4 +15,12 @@ public partial class AdminPanel_Questions_AddEditQuestion : System.Web.UI.Page
     {
 
     }
+    protected void ddlExam_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlSubject_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

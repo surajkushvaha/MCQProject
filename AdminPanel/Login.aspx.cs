@@ -40,7 +40,7 @@ public partial class AdminPanel_Default : System.Web.UI.Page
         }
         if (ErrorMessage != "")
         {
-            msgDanger.InnerText = ErrorMessage;
+            msgDanger.Text = ErrorMessage;
             blockDanger.Visible = true;
             return;
         }
@@ -77,7 +77,7 @@ public partial class AdminPanel_Default : System.Web.UI.Page
 
         else
         {
-            msgDanger.InnerText = balUser.Message;
+            msgDanger.Text = balUser.Message;
             blockDanger.Visible = true;
             return;
         }

@@ -71,12 +71,156 @@
             </div>
             <div class="card-body pt-5">
                 <div id="kt_ecommerce_settings_general_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                    <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
+                        <div class="col" data-select2-id="select2-data-123-07xa">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <label class="fs-6 fw-bold form-label mt-3">
+                                    <span class="required">Exam Name</span>
+                                </label>
+                                <div class="w-100" data-select2-id="select2-data-122-g4yb">
+                                    <asp:DropDownList ID="ddlExam" runat="server" class="form-select form-select-solid"
+                                        AutoPostBack="true" name="Exam" OnSelectedIndexChanged="ddlExam_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col" data-select2-id="select2-data-123-07xa">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <label class="fs-6 fw-bold form-label mt-3">
+                                    <span class="required">Subject Name</span>
+                                </label>
+                                <div class="w-100" data-select2-id="select2-data-122-g4yb">
+                                    <asp:DropDownList ID="ddlSubject" runat="server" class="form-select form-select-solid"
+                                        name="Subject" AutoPostBack="true" OnSelectedIndexChanged="ddlSubject_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div id="editorQuestion" runat="server" class="kt_docs_quill_basic">
-</div>
+                    <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
+                        <div class="col" data-select2-id="select2-data-123-07xa">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <label class="fs-6 fw-bold form-label mt-3">
+                                    <span class="required">Topic Name</span>
+                                </label>
+                                <div class="w-100" data-select2-id="select2-data-122-g4yb">
+                                    <asp:DropDownList ID="ddlTopic" runat="server" class="form-select form-select-solid"
+                                        name="Topic">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col" data-select2-id="select2-data-123-07xa">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <label class="fs-6 fw-bold form-label mt-3">
+                                    <span class="required">Correct Option</span>
+                                </label>
+                                <div class="w-100" data-select2-id="select2-data-122-g4yb">
+                                    <asp:DropDownList ID="ddlOption" runat="server" class="form-select form-select-solid"
+                                        name="Option">
+                                        <asp:ListItem Text="Select Correct Option" Value="0" />
+                                        <asp:ListItem Text="Option A" Value="A" />
+                                        <asp:ListItem Text="Option B" Value="B" />
+                                        <asp:ListItem Text="Option C" Value="C" />
+                                        <asp:ListItem Text="Option D" Value="D" />
+                                        <asp:ListItem Text="Option E" Value="E" />
+
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span class="required">Question</span>
+                        </label>
+                        <asp:TextBox ID="txtQuestion" runat="server" TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="Question" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+
+                    <%--<div id="editorQuestion" runat="server" class="kt_docs_quill_basic"></div>--%>
+                    <%--<asp:Panel ID="Panel1" runat="server" CssClass="kt_docs_quill_basic">--%>
+                    <%--</asp:Panel>--%>
+                    <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span class="required">Option A</span>
+                        </label>
+                        <asp:TextBox ID="txtOptionA" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="OptionA" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span class="required">Option B</span>
+                        </label>
+                        <asp:TextBox ID="txtOptionB" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="Option B" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span >Option C</span>
+                        </label>
+                        <asp:TextBox ID="txtOptionC" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="txtOptionC" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span >Option D</span>
+                        </label>
+                        <asp:TextBox ID="txtOptionD" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="OptionD" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+                    <div class="fv-row mb-7 fv-plugins-icon-container">
+                        <label class="fs-6 fw-bold form-label mt-3">
+                            <span ">Option E</span>
+                        </label>
+                        <asp:TextBox ID="txtOptionE" runat="server"  TextMode="MultiLine" CssClass="form-control form-control-solid"
+                            name="OptionE" value="" />
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                    </div>
+
+
+                    <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
+                        <div class="col">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <label class="fs-6 fw-bold form-label mt-3">
+                                    <span>Remarks</span>
+
+                                </label>
+                                <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control form-control-solid"
+                                    name="Remarks" value="" />
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="fv-row mb-7">
+                                <label class="fs-6 fw-bold form-label mt-3">
+                                    <span>Visibility</span>
+
+                                </label>
+                                <div class="d-flex flex-stack w-lg-50">
+                                    <div class="me-5">
+                                        <label class="fs-8 fw-bold form-label">Are you want to Visible for everyone?</label>
+                                    </div>
+                                    <label class="form-check form-switch form-check-custom form-check-solid">
+                                        <input id="cbVisible" runat="server" class="form-check-input" type="checkbox" value="1" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="separator mb-6"></div>
                     <div class="d-flex justify-content-end">
-                        <asp:HyperLink runat="server" NavigateUrl="~/AdminPanel/Subjects/SubjectList.aspx"
+                        <asp:HyperLink runat="server" NavigateUrl="~/AdminPanel/Questions/QuestionList.aspx"
                             data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</asp:HyperLink>
                         <asp:Button runat="server" ID="btnSave" Text="Save" class="btn btn-primary" OnClick="btnSave_Click">
                         </asp:Button>

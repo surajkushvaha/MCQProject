@@ -80,7 +80,7 @@
                             </svg>
                         </span>
                         <div class="d-flex flex-column">
-                            <span id="msgDanger" runat="server"></span>
+                            <asp:Label ID="msgDanger" runat="server"></asp:Label>
                         </div>
                         <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
                             data-bs-dismiss="alert">
@@ -102,7 +102,7 @@
                             </svg>
                         </span>
                         <div class="d-flex flex-column">
-                            <span id="msgSuccess" runat="server"></span>
+                            <asp:Label  ID="msgSuccess" runat="server"></asp:Label>
                         </div>
                         <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
                             data-bs-dismiss="alert">
