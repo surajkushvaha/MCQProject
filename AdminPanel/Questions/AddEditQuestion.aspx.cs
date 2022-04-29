@@ -15,16 +15,24 @@ public partial class AdminPanel_Questions_AddEditQuestion : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            fillDropDown();
-            if (Request.QueryString["QuestionID"] != null)
+            if (Session["UserID"] != null)
             {
-                lblMode.Text = "Edit";
-                fillData(Request.QueryString["QuestionID"].ToString().Trim());
+                fillDropDown();
+                if (Request.QueryString["QuestionID"] != null)
+                {
+                    lblMode.Text = "Edit";
+                    fillData(Request.QueryString["QuestionID"].ToString().Trim());
+                }
+                else
+                {
+                    lblMode.Text = "Add New";
+                }
             }
             else
             {
-                lblMode.Text = "Add New";
+                Response.Redirect("~/AdminPanel/Login.aspx", true);
             }
+            
         }
     }
 
@@ -55,18 +63,20 @@ public partial class AdminPanel_Questions_AddEditQuestion : System.Web.UI.Page
             DataTable dtSub = new DataTable();
             DataTable dtExam = new DataTable();
             dtSub = balSubject.SelectByExamTopicID(entQuestion.ExamTopicID.ToString().Trim());
-            string SubID = dtSub.Columns[0].ToString().Trim();
+            string SubID = dtSub.Rows[0].ItemArray[0].ToString().Trim();
             dtExam = balExam.SelectByExamSubjectID(SubID);
             string ExamID = dtExam.Columns[0].ToString().Trim();
+            //Exam
             CommonFields.selectForDropDown(ddlExam);
-            CommonFields.selectByExamCategoryID(ddlSubject, ExamID);
-            CommonFields.selectByExamSubjectID(ddlTopic, SubID);
-            CommonFields.SelectSubjectCategoryByExamTopicID(ddlSubject,entQuestion.ExamTopicID.ToString().Trim());
             CommonFields.SelectExamCategoryByExamSubjectID(ddlExam, SubID);
+            //Subject
+            CommonFields.selectByExamCategoryID(ddlSubject, ddlExam.SelectedValue);
+            ddlSubject.SelectedValue = SubID;
+            //Topic
+            CommonFields.selectByExamSubjectID(ddlTopic, SubID);
             ddlTopic.SelectedValue = entQuestion.ExamTopicID.ToString().Trim();
-            //CommonFields.SelectExamCategoryByExamSubjectID(ddlExam, entQuestion.ExamTopicID.ToString().Trim());
-            //CommonFields.selectByExamCategoryID(ddlSubject, ddlExam.SelectedValue);
-            //ddlSubject.SelectedValue = entQuestion.QuestionID.ToString().Trim();
+
+           
         }
         if (entQuestion.Question.ToString().Trim() != "")
             txtQuestion.Text = entQuestion.Question.ToString().Trim();

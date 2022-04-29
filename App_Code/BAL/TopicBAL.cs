@@ -119,4 +119,17 @@ public class TopicBAL
 
     }
     #endregion SelectByExamSubjectID
+
+    #region USERPANEL
+    #region UserTopicFillUp
+    public DataTable UserTopicFillUp(string ID)
+    {
+        TopicDAL dalTopic = new TopicDAL();
+        DataTable dtTopic = new DataTable();
+        dtTopic = dalTopic.UserTopicFillUp(ID);
+        Message = dalTopic.Message;
+        return dtTopic;
+    }
+    #endregion UserTopicFillUp
+    #endregion USERPANEL
 }

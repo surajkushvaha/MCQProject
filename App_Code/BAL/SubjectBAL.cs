@@ -130,4 +130,30 @@ public class SubjectBAL
         return dtSubject;
     }
     #endregion SelectByExamTopicID
+
+    #region USERPANEL
+    #region UserSubjectFillUp
+    public DataTable UserSubjectFillUp(string ID)
+    {
+        SubjectDAL dalSubject = new SubjectDAL();
+        DataTable dtSubject = new DataTable();
+        dtSubject = dalSubject.UserSubjectFillUp(ID);
+
+        //if (dtSubject.Rows.Count > 0)
+        //{
+        //    for (int i = 0; i < dtSubject.Rows.Count; i++)
+        //    {
+        //        int no = Convert.ToInt32(dtSubject.Rows[i].ItemArray[2]);
+
+        //        if (no == 0)
+        //        {
+        //            dtSubject.Rows[i].Delete();
+        //        }
+        //    }
+        //}
+        Message = dalSubject.Message;
+        return dtSubject;
+    }
+    #endregion UserSubjectFillUp
+    #endregion USERPANEL
 }

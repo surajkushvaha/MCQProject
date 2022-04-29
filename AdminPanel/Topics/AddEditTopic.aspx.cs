@@ -13,16 +13,24 @@ public partial class AdminPanel_Topics_AddEditTopic : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            fillDropDown();
-            if (Request.QueryString["TopicID"] != null)
+            if (Session["UserID"] != null)
             {
-                lblMode.Text = "Edit";
-                fillData(Request.QueryString["TopicID"].ToString().Trim());
+                fillDropDown();
+                if (Request.QueryString["TopicID"] != null)
+                {
+                    lblMode.Text = "Edit";
+                    fillData(Request.QueryString["TopicID"].ToString().Trim());
+                }
+                else
+                {
+                    lblMode.Text = "Add New";
+                }
             }
             else
             {
-                lblMode.Text = "Add New";
+                Response.Redirect("~/AdminPanel/Login.aspx", true);
             }
+           
         }
     }
 

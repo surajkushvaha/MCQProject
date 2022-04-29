@@ -13,7 +13,16 @@ public partial class AdminPanel_Questions_QuestionList : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
-        { fillGridView(); }
+        { 
+        if (Session["UserID"] != null)
+        {
+            fillGridView();
+        }
+        else
+        {
+            Response.Redirect("~/AdminPanel/Login.aspx", true);
+        }
+        }
     }
    
 

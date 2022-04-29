@@ -17,9 +17,35 @@ public partial class UserPanel_Default : System.Web.UI.Page
     private void fillData()
     {
         ExamBAL balExam = new ExamBAL();
-        DataTable dt = new DataTable();
-        dt = balExam.selectForDropDown();
-        rpSubjects.DataSource = dt;
-        rpSubjects.DataBind();
+        DataTable dtExam = new DataTable();
+        dtExam = balExam.UserExamFillUp();
+        rpExam.DataSource = dtExam;
+        rpExam.DataBind();
+
     }
+
+
+    protected void rpExam_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        SubjectBAL balSubject = new SubjectBAL();
+        ExamBAL balExam = new ExamBAL();
+        DataTable dtSubject = new DataTable();
+        DataTable dtExam = new DataTable();
+
+        HiddenField hf = (HiddenField)e.Item.FindControl("hf");
+        if (hf != null && hf.Value.ToString().Trim() != "")
+        {
+            dtExam = balExam.UserGetNoOfMCQ(hf.Value);
+            Label lbl = (Label)e.Item.FindControl("lblCountMCQ");
+            lbl.Text = dtExam.Rows[0].ItemArray[0].ToString();
+            dtSubject = balSubject.UserSubjectFillUp(hf.Value);
+            Repeater rpSubject = (Repeater)e.Item.FindControl("rpSubject");
+            if (rpSubject != null)
+            {
+                rpSubject.DataSource = dtSubject;
+                rpSubject.DataBind();
+            }
+        }
+    }
+    
 }

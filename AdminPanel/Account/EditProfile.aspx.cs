@@ -12,6 +12,7 @@ public partial class AdminPanel_Account_EditProfile : System.Web.UI.Page
     #region On Load
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (!Page.IsPostBack)
         {
             if (Session["UserID"] != null)
@@ -23,7 +24,7 @@ public partial class AdminPanel_Account_EditProfile : System.Web.UI.Page
                 Response.Redirect("~/AdminPanel/Login.aspx", true);
             }
         }
-        
+       
 
     }
     #endregion On Load

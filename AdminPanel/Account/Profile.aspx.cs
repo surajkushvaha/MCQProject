@@ -22,6 +22,7 @@ public partial class AdminPanel_Account_Profile : System.Web.UI.Page
                 Response.Redirect("~/AdminPanel/Login.aspx", true);
             }
         }
+        
     }
     #endregion On Load Page
 

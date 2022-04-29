@@ -17,16 +17,24 @@ public partial class AdminPanel_Subjects_AddEditSubject : System.Web.UI.Page
         
         if (!Page.IsPostBack)
         {
-            fillDropDown();
-            if (Request.QueryString["SubjectID"] != null)
+            if (Session["UserID"] != null)
             {
-                lblMode.Text = "Edit";
-                fillData(Request.QueryString["SubjectID"].ToString().Trim());
+                fillDropDown();
+                if (Request.QueryString["SubjectID"] != null)
+                {
+                    lblMode.Text = "Edit";
+                    fillData(Request.QueryString["SubjectID"].ToString().Trim());
+                }
+                else
+                {
+                    lblMode.Text = "Add New";
+                }
             }
             else
             {
-                lblMode.Text = "Add New";
+                Response.Redirect("~/AdminPanel/Login.aspx", true);
             }
+            
         }
     }
     private void fillData(string ID)

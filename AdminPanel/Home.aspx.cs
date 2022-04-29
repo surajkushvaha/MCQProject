@@ -12,7 +12,14 @@ public partial class AdminPanel_index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        fillData();
+        if (Session["UserID"] != null)
+        {
+            fillData();
+        }
+        else
+        {
+            Response.Redirect("~/AdminPanel/Login.aspx", true);
+        }
     }
 
     private void fillData(){

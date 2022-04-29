@@ -11,7 +11,16 @@ public partial class AdminPanel_Topics_TopicList : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
-        { fillGridView(); }
+        {
+            if (Session["UserID"] != null)
+            {
+                fillGridView();
+            }
+            else
+            {
+                Response.Redirect("~/AdminPanel/Login.aspx", true);
+            }
+        }
     }
     protected void gvTopicList_RowCommand(object sender, GridViewCommandEventArgs e)
     {

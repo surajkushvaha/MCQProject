@@ -9,21 +9,21 @@
         <!--begin::Heading-->
         <div class="d-flex align-items-center justify-content-between flex-wrap">
             <!--begin::Label-->
-            <span class="fs-2 fw-bolder pe-2">GEMS - Government Exams & Aptitude MCQ</span>
+            <span class="fs-2 fw-bolder pe-2">GEAMS - Government Exams & Aptitude MCQ</span>
             <!--end::Label-->
 
             <!--begin::Carousel Indicators-->
-            <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet">
+           <%-- <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet">
                 <li data-bs-target="#kt_carousel_2_carousel" data-bs-slide-to="0" class="ms-1 active">
                 </li>
                 <li data-bs-target="#kt_carousel_2_carousel" data-bs-slide-to="1" class="ms-1"></li>
-            </ol>
+            </ol>--%>
             <!--end::Carousel Indicators-->
         </div>
         <!--end::Heading-->
 
         <!--begin::Carousel-->
-        <div class="carousel-inner pt-8 rounded">
+<%--        <div class="carousel-inner pt-8 rounded">
             <!--begin::Item-->
             <div class="carousel-item rounded active">
                 <div class="card shadow-sm bg-primary">
@@ -57,13 +57,13 @@
             <!--end::Item-->
 
 
-        </div>
+        </div>--%>
         <!--end::Carousel-->
     </div>
 
                 <div class="row g-5 g-xl-8">
 
-    <asp:Repeater ID="rpSubjects" runat="server">
+    <asp:Repeater ID="rpExam" runat="server" OnItemDataBound="rpExam_ItemDataBound">
         <ItemTemplate>
                 <!--begin::Col-->
                 <div class="col-xl-4">
@@ -79,11 +79,12 @@
                             <div id="diffrentBoy" class="px-9 pt-7 card-rounded h-275px w-100 ">
                                 <div class="d-flex flex-stack">
                                     <h3 class="m-0 text-primary fw-bolder fs-3"><%# Eval("ExamCategoryName") %></h3>
+                                    <asp:HiddenField runat="server" ID="hf" Value='<%# Eval("ExamCategoryID") %>' />
                                 </div>
                                 <div class="d-flex text-center flex-column text-danger pt-8">
 
                                     <span class="fw-bold fs-7">Total MCQs</span>
-                                    <span class="fw-bolder fs-2x pt-1">1000</span>
+                                    <asp:Label ID="lblCountMCQ" runat="server" class="fw-bolder fs-2x pt-1"></asp:Label>
                                 </div>
 
                                 <!--end::Balance-->
@@ -93,9 +94,9 @@
                             <!--begin::Items-->
                             <div class="bg-body shadow-sm card-rounded mx-9 mb-9 px-6 py-9 position-relative z-index-1"
                                 style="margin-top: -100px">
-
-                                <!--begin::Item-->
-                                <div class="d-flex align-items-center mb-6">
+                                <asp:Repeater runat="server" ID="rpSubject" >
+                                    <ItemTemplate>
+                                    <div class="d-flex align-items-center mb-6">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-45px w-40px me-5">
                                         <span class="symbol-label bg-lighten">
@@ -114,41 +115,23 @@
                                     </div>
                                     <!--end::Symbol-->
                                     <!--begin::Description-->
-                                    <a href="#" class="d-flex text-primary-800 text-hover-danger align-items-center flex-wrap w-100">
+                                    <asp:HyperLink runat="server" NavigateUrl='<%# "~/UserPanel/ExamQuestion.aspx?SubjectID="+ Eval("ExamSubjectID") %>'  CssClass="d-flex text-primary-800 text-hover-danger align-items-center flex-wrap w-100">
                                         <!--begin::Title-->
                                         <div class="mb-1 pe-3 flex-grow-1">
-                                            <span class="fs-5  fw-bolder">Subject Name</span>
+                                            <span class="fs-5  fw-bolder"><%# Eval("ExamSubjectName") %></span>
                                         </div>
                                         <!--end::Title-->
                                         <!--begin::Label-->
                                         <div class="d-flex align-items-center">
                                             <div class="fw-bolder fs-5 pe-1"><span class="fas fa-arrow-right"></span></div>
                                         </div>
-                                    </a>
+                                    </asp:HyperLink>
                                 </div>
-                                <div class="d-flex align-items-center mb-6">
-                                    <div class="symbol symbol-45px w-40px me-5">
-                                        <span class="symbol-label bg-lighten">
-                                            <span class="svg-icon svg-icon-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none">
-                                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="blue"></rect>
-                                                    <rect opacity="0.4" x="13" y="2" width="9" height="9" rx="2" fill="blue"></rect>
-                                                    <rect opacity="0.4" x="13" y="13" width="9" height="9" rx="2" fill="blue"></rect>
-                                                    <rect opacity="0.4" x="2" y="13" width="9" height="9" rx="2" fill="blue"></rect>
-                                                </svg>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <a href="#" class="d-flex text-primary-800 text-hover-danger align-items-center flex-wrap w-100">
-                                        <div class="mb-1 pe-3 flex-grow-1">
-                                            <span class="fs-5  fw-bolder">Subject Name</span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="fw-bolder fs-5 pe-1"><span class="fas fa-arrow-right"></span></div>
-                                        </div>
-                                    </a>
-                                </div>
+                                        </ItemTemplate>
+                                </asp:Repeater>
+
+                                
+                                
                             </div>
                         </div>
                     </div>

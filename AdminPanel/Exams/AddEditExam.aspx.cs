@@ -14,19 +14,30 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (!Page.IsPostBack)
         {
-            if (Request.QueryString["ExamID"] != null)
+
+            if (Session["UserID"] != null)
             {
-                lblMode.Text = "Edit";
-                fillData(Request.QueryString["ExamID"].ToString().Trim());
+                if (Request.QueryString["ExamID"] != null)
+                {
+                    lblMode.Text = "Edit";
+                    fillData(Request.QueryString["ExamID"].ToString().Trim());
+                }
+                else
+                {
+                    lblMode.Text = "Add New";
+
+                }
             }
             else
             {
-                lblMode.Text = "Add New";
-
+                Response.Redirect("~/AdminPanel/Login.aspx", true);
             }
+            
         }
+        
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

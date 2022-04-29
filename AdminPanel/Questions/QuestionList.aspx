@@ -68,8 +68,8 @@
                         <asp:TemplateField HeaderText="Detail">
                             <ItemTemplate>
                                 <asp:Label runat="server" Text='<%# "Topic : " + Eval("ExamTopicName") %>'></asp:Label></br>
-                                <asp:Label runat="server" Text='<%# "Topic : " + Eval("ExamSubjectName") %>'></asp:Label></br>
-                                <asp:Label runat="server" Text='<%# "Topic : " + Eval("ExamCategoryName") %>'></asp:Label>
+                                <asp:Label runat="server" Text='<%# "Subject : " + Eval("ExamSubjectName") %>'></asp:Label></br>
+                                <asp:Label runat="server" Text='<%# "Exam : " + Eval("ExamCategoryName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="IsActive" HeaderText="Visibility" />
@@ -82,7 +82,7 @@
                         <asp:TemplateField HeaderText="Delete">
                             <ItemTemplate>
                                 <asp:Button runat="server" ID="btnDelete" Text="Delete" CssClass="btn btn-sm btn-light-danger btn-active-danger"
-                                    CommandName="deleteRecord" OnClientClick="javascript : return confirm('Are you sure you want to delete?')" />
+                                    CommandName="deleteRecord" CommandArgument='<%# Eval("QuestionID").ToString() %>'  OnClientClick="javascript : return confirm('Are you sure you want to delete?')" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

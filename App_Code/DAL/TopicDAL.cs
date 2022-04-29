@@ -304,5 +304,48 @@ public class TopicDAL:DatabaseConfig
     }
     #endregion SelectByExamSubjectID
 
+    #region USERPANEL
+    #region UserTopicFillUp
+    public DataTable UserTopicFillUp(string ID)
+    {
+        using (SqlConnection objCon = new SqlConnection(ConnectionString))
+        {
+            if (objCon.State != ConnectionState.Open)
+                objCon.Open();
+            DataTable dt = new DataTable();
+            using (SqlCommand objCmd = objCon.CreateCommand())
+            {
+                try
+                {
+                    objCmd.CommandType = CommandType.StoredProcedure;
+                    objCmd.CommandText = "[PR_ExamTopicTable_UserTopicFillUp]";
+                    objCmd.Parameters.AddWithValue("@ExamSubjectID", ID);
+                    using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                    {
+                        dt.Load(objSDR);
+                    }
+                    return dt;
+                }
+                catch (SqlException sqlex)
+                {
+                    Message = sqlex.Message;
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    Message = ex.Message;
+                    return null;
+                }
+                finally
+                {
+                    if (objCon.State == ConnectionState.Open)
+                        objCon.Close();
+                }
 
+            }
+
+        }
+    }
+    #endregion UserTopicFillUp
+    #endregion USERPANEL
 }

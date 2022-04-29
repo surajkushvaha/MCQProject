@@ -133,5 +133,45 @@ namespace MCQProject
             
         }
         #endregion SelectByExamSubjectID
+
+        #region USERPANEL
+        #region UserExamFillUp
+        public DataTable UserExamFillUp()
+        {
+
+            ExamDAL dalExam = new ExamDAL();
+            DataTable dtExam = new DataTable();
+            dtExam = dalExam.UserExamFillUp();
+            DataTable dt = new DataTable();
+            if (dtExam.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtExam.Rows.Count; i++)
+                {
+                    int no = Convert.ToInt32(dtExam.Rows[i].ItemArray[2]);
+
+                    if (no == 0)
+                    {
+                        dtExam.Rows[i].Delete();
+                    }
+                }
+            }
+            Message = dalExam.Message;
+            return dtExam;
+        }
+        #endregion UserExamFillUp
+
+        #region UserGetNoOfMCQ
+        public DataTable UserGetNoOfMCQ(string ID)
+        {
+
+            ExamDAL dalExam = new ExamDAL();
+            DataTable dtExam = new DataTable();
+
+            dtExam = dalExam.UserGetNoOfMCQ(ID);
+            Message = dalExam.Message;
+            return dtExam;
+        }
+        #endregion UserGetNoOfMCQ
+        #endregion USERPANEL
     }
 }

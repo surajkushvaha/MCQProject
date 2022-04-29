@@ -18,6 +18,7 @@ public partial class AdminPanel_Default : System.Web.UI.Page
             {
                 Response.Redirect("~/AdminPanel/Home.aspx", true);
             }
+           
         }
     }
     #endregion Page Load
