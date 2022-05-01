@@ -234,7 +234,7 @@
                                                                     <asp:Repeater runat="server" ID="rpTestSubject">
                                                                         <ItemTemplate>
                                                                             <div class="menu-item">
-                                                                                <asp:HyperLink CssClass="menu-link py-3" runat="server" NavigateUrl='<%# "~/UserPanel/Quiz.aspx?SubjectID="+ Eval("ExamSubjectID") %>'>
+                                                                                <asp:HyperLink CssClass="menu-link py-3" runat="server" NavigateUrl='<%# "~/UserPanel/Quiz.aspx?Subject="+ Eval("ExamSubjectID") %>'>
                                                                 <span class="menu-bullet">
                                                                     <span class="bullet bullet-dot"></span>
                                                                 </span>
@@ -278,33 +278,11 @@
                             </div>
                         </div>
                     </div>
-                    <!--end::Header-->
-                    <!--begin::Content-->
-                    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                        <!--begin::Toolbar-->
-                        <div class="toolbar" id="kt_toolbar">
-                            <!--begin::Container-->
-                            <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack">
-                                <!--begin::Page title-->
-                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
-                                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                    <!--begin::Title-->
-                                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Home</h1>
-                                    <!--end::Title-->
-                                    <!--begin::Separator-->
-                                    <span class="h-20px border-gray-300 border-start mx-4"></span>
-                                    <ul class="breadcrumb  fw-bold fs-7 my-1">
-                                        <li class="breadcrumb-item text-muted">
-                                            <a href="#" class="text-muted text-hover-primary">Home</a>
-                                        </li>
-                                        <li class="breadcrumb-item text-muted">Aside</li>
-                                        <li class="breadcrumb-item text-dark">Only Header</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="content d-flex flex-column flex-column-fluid p-0" id="kt_content">
                         <div class="post d-flex flex-column-fluid" id="kt_post">
                             <div id="kt_content_container" class="container-xxl">
+
                                 <div>
                                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                     </asp:ContentPlaceHolder>
@@ -312,7 +290,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                    <div class="footer py-4 d-flex flex-lg-column mt-3" id="kt_footer">
                         <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
                             <div class="text-dark order-2 order-md-1">
                                 <span class="text-muted fw-bold me-1">2022©</span>

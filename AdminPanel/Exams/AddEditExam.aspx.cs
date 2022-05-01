@@ -50,7 +50,7 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
             ErrorMessage += "- Enter Description </br>";
         if(ErrorMessage!="")
         {
-            msgDanger.InnerText = ErrorMessage;
+            msgDanger.Text = ErrorMessage;
             blockDanger.Visible = true;
             return;
         }
@@ -86,7 +86,7 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
              else
              {
                  //message
-                 msgDanger.InnerText = balExam.Message;
+                 msgDanger.Text = balExam.Message;
                  blockDanger.Visible = true;
              }
          }
@@ -95,14 +95,14 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
              if (balExam.Insert(entExam))
              {
                  clearFields();
-                 msgSuccess.InnerText = "Data Inserted Successfully.";
+                 msgSuccess.Text = "Data Inserted Successfully.";
                  blockSuccess.Visible = true;
                  //Message
              }
              else
              {
                  //Message
-                 msgDanger.InnerText = balExam.Message;
+                 msgDanger.Text = balExam.Message;
                  blockDanger.Visible = true;
              }
          }
@@ -126,7 +126,7 @@ public partial class AdminPanel_Exams_AddEditExam : System.Web.UI.Page
         if (balExam.Message != null && balExam.Message != "")
         {
             //Message
-            msgDanger.InnerText = balExam.Message;
+            msgDanger.Text = balExam.Message;
             blockDanger.Visible = true;
             return;
         }

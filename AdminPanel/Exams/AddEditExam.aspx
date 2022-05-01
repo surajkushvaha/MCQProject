@@ -16,7 +16,7 @@
         </span>
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-danger">Important</h4>
-            <span  id="msgDanger" runat="server" ></span>
+            <asp:Label  ID="msgDanger" runat="server" ></asp:Label>
         </div>
         <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
             data-bs-dismiss="alert">
@@ -36,7 +36,7 @@
         </span>
         <div class="d-flex flex-column">
             <h4 class="mb-1 text-primary">Success</h4>
-            <span id="msgSuccess" runat="server"></span>
+            <asp:Label ID="msgSuccess" runat="server"></asp:Label>
         </div>
         <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
             data-bs-dismiss="alert">

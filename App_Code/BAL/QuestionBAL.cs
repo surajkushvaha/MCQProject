@@ -102,4 +102,30 @@ public class QuestionBAL
         return entQuestion;
     }
     #endregion SelectByPK
+
+
+    #region UserPanel
+    #region UserSelectAllBySubjectIDTopicID
+    public DataTable UserSelectAllBySubjectIDTopicID(string SubjectID, string TopicID)
+    {
+        QuestionDAL dalQuestion = new QuestionDAL();
+        DataTable dtQuestion = new DataTable();
+        dtQuestion = dalQuestion.UserSelectAllBySubjectIDTopicID(SubjectID,TopicID);
+        Message = dalQuestion.Message;
+        return dtQuestion;
+    }
+    #endregion UserSelectAllBySubjectIDTopicID
+
+
+    #region UserSelectAllBySubjectID
+    public DataTable UserSelectAllBySubjectID(string SubjectID)
+    {
+        QuestionDAL dalQuestion = new QuestionDAL();
+        DataTable dtQuestion = new DataTable();
+        dtQuestion = dalQuestion.UserSelectAllBySubjectID(SubjectID);
+        Message = dalQuestion.Message;
+        return dtQuestion;
+    }
+    #endregion UserSelectAllBySubjectID
+    #endregion UserPanel
 }
