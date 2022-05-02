@@ -21,8 +21,7 @@ public partial class Content_UserPanel : System.Web.UI.MasterPage
         dtExam = balExam.UserExamFillUp();
         rpExam.DataSource = dtExam;
         rpExam.DataBind();
-        rpTestExam.DataSource = dtExam;
-        rpTestExam.DataBind();
+       
 
     }
 
@@ -45,21 +44,5 @@ public partial class Content_UserPanel : System.Web.UI.MasterPage
         }
     }
     
-    protected void rpTestExam_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        SubjectBAL balSubject = new SubjectBAL();
-        DataTable dtSubject = new DataTable();
-
-        HiddenField hf = (HiddenField)e.Item.FindControl("hfTest");
-        if (hf != null && hf.Value.ToString().Trim() != "")
-        {
-            dtSubject = balSubject.UserSubjectFillUp(hf.Value);
-            Repeater rpSubject = (Repeater)e.Item.FindControl("rpTestSubject");
-            if (rpSubject != null)
-            {
-                rpSubject.DataSource = dtSubject;
-                rpSubject.DataBind();
-            }
-        }
-    }
+    
 }
