@@ -332,7 +332,6 @@ namespace MCQProject
         }
         #endregion UserSelectAllBySubjectIDTopicID
 
-        
         #region UserSelectAllBySubjectID
         public DataTable UserSelectAllBySubjectID(string SubjectID)
         {
@@ -375,6 +374,97 @@ namespace MCQProject
             }
         }
         #endregion UserSelectAllBySubjectID
+
+        #region TestUserSelectAllByExamID
+        public DataTable TestUserSelectAllByExamID(string ExamID, string NoMCQ)
+        {
+            using (SqlConnection objCon = new SqlConnection(ConnectionString))
+            {
+                if (objCon.State != ConnectionState.Open)
+                    objCon.Open();
+                DataTable dt = new DataTable();
+                using (SqlCommand objCmd = objCon.CreateCommand())
+                {
+                    try
+                    {
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "[PR_ExamQuestionTable_UserSelectAllByExamID]";
+                        objCmd.Parameters.AddWithValue("@ExamID", ExamID);
+                        objCmd.Parameters.AddWithValue("@noOfMCQ", NoMCQ);
+                        using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                        {
+                            dt.Load(objSDR);
+                        }
+                        return dt;
+                    }
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.Message;
+                        return null;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                        return null;
+                    }
+                    finally
+                    {
+                        if (objCon.State == ConnectionState.Open)
+                            objCon.Close();
+
+                    }
+                }
+
+            }
+        }
+        #endregion TestUserSelectAllByExamID
+
+        #region TestUserSelectAllBySubjectID
+        public DataTable TestUserSelectAllBySubjectID(string SubjectID, string ExamID, string NoMCQ)
+        {
+            using (SqlConnection objCon = new SqlConnection(ConnectionString))
+            {
+                if (objCon.State != ConnectionState.Open)
+                    objCon.Open();
+                DataTable dt = new DataTable();
+                using (SqlCommand objCmd = objCon.CreateCommand())
+                {
+                    try
+                    {
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "[PR_ExamQuestionTable_UserSelectAllBySubjectIDForTest]";
+                        objCmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+                        objCmd.Parameters.AddWithValue("@ExamID", ExamID);
+                        objCmd.Parameters.AddWithValue("@noOfMCQ", NoMCQ);
+
+                        using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                        {
+                            dt.Load(objSDR);
+                        }
+                        return dt;
+                    }
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.Message;
+                        return null;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                        return null;
+                    }
+                    finally
+                    {
+                        if (objCon.State == ConnectionState.Open)
+                            objCon.Close();
+
+                    }
+                }
+
+            }
+        }
+        #endregion TestUserSelectAllBySubjectID
+
         #endregion UserPanel
     }
 }

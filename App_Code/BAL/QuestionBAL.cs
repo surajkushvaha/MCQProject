@@ -127,5 +127,29 @@ public class QuestionBAL
         return dtQuestion;
     }
     #endregion UserSelectAllBySubjectID
+
+
+    #region TestUserSelectAllByExamID
+    public DataTable TestUserSelectAllByExamID(string ExamID, string NoMCQ)
+    {
+        QuestionDAL dalQuestion = new QuestionDAL();
+        DataTable dtQuestion = new DataTable();
+        dtQuestion = dalQuestion.TestUserSelectAllByExamID(ExamID,NoMCQ);
+        Message = dalQuestion.Message;
+        return dtQuestion;
+    }
+    #endregion TestUserSelectAllByExamID
+
+    #region TestUserSelectAllBySubjectID
+    public DataTable TestUserSelectAllBySubjectID(string SubjectID, string ExamID, string NoMCQ)
+    {
+        QuestionDAL dalQuestion = new QuestionDAL();
+        DataTable dtQuestion = new DataTable();
+        dtQuestion = dalQuestion.TestUserSelectAllBySubjectID(SubjectID,ExamID,NoMCQ);
+        Message = dalQuestion.Message;
+        return dtQuestion;
+    }
+    #endregion TestUserSelectAllBySubjectID
+
     #endregion UserPanel
 }

@@ -35,10 +35,15 @@ public partial class UserPanel_Quiz : System.Web.UI.Page
             blockDanger.Visible = true;
             return;
         }
-
-        Session["Test"] = DateTime.Now;
-        Session["Exam"] = ddlExam.SelectedValue;
-        Session["Subject"] =ddlSubject.SelectedValue;
+        if (Session["TestKey"] != null)
+        {
+            Session.Clear();
+        }
+        Session["TestKey"] = DateTime.Now ;
+        Session["ExamID"] = ddlExam.SelectedValue;
+        Session["SubjectID"] =ddlSubject.SelectedValue;
+        Session["ExamName"] = ddlExam.SelectedItem;
+        Session["SubjectName"] = ddlSubject.SelectedItem;
         if (rd1.Checked== true)
         {
             Session["Value"] = rd1.Value;
