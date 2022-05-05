@@ -20,6 +20,9 @@
             -ms-overflow-style: none;
             width: none;
         }
+
+       
+
     </style>
 </head>
 <body>
@@ -95,6 +98,7 @@
             </div>
 
         </div>
+
         <div class="post d-flex flex-column-fluid my-5" id="kt_post" runat="server">
             <div id="kt_content_container" class="container-xxl">
                 <div class="row gy-5 g-xl-8">
@@ -102,7 +106,7 @@
                     <asp:Repeater ID="rpQuestion" runat="server" OnItemDataBound="rpQuestion_ItemDataBound">
                         <ItemTemplate>
                             <div class="col-xl-12">
-                                <div class="card shadow-sm">
+                                <div class="card shadow-sm pb-3">
                                     <div class="p-5">
                                         <h2 class="card-title text-primary">Question <%#Convert.ToInt32( DataBinder.Eval(Container, "ItemIndex", "") ) + 1%>
                                         </h2>
@@ -112,7 +116,7 @@
                                         </p>
                                     </div>
                                     <div class="card-body py-0">
-                                        <asp:RadioButtonList runat="server" ID="options" class="list-group-flush p-0">
+                                        <asp:RadioButtonList runat="server" ID="options" class="list-group-flush p-0" TextAlign="Right" >
                                            
                                         </asp:RadioButtonList>
                                     </div>
@@ -125,6 +129,7 @@
           
 
         </div>
+
          <div class="d-flex  justify-content-center my-5">
                <asp:Button ID="btnSubmit" CssClass="btn btn-sm btn-success" OnClick="btnSubmit_Click" runat="server" Text="Submit" />      
          </div>

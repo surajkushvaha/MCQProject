@@ -107,6 +107,8 @@
                         </div>
                         <!--end::Col-->
                     </div>
+                                                    <asp:HiddenField ID="hfBgImg" runat="server" />
+
                     <asp:HiddenField ID="hfImgSize" runat="server" />
                     <asp:HiddenField ID="hfImgType" runat="server" />
                     <asp:HiddenField ID="hfImgExtension" runat="server" />

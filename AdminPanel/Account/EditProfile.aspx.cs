@@ -1,7 +1,9 @@
 ﻿using MCQProject;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlTypes;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -103,10 +105,10 @@ public partial class AdminPanel_Account_EditProfile : System.Web.UI.Page
         }
 
         #endregion Server Side Validation and Assgining values
-
+       
         #region Update
         UserBAL balUser = new UserBAL();
-
+        SavePhoto(entUser);
         if (balUser.Update(entUser))
         {
             Session["DisplayName"] = entUser.DisplayName.ToString().Trim();
@@ -155,6 +157,7 @@ public partial class AdminPanel_Account_EditProfile : System.Web.UI.Page
             if (!entUser.PhotoPath.IsNull)
             {
                 bgImage.Style.Add("background-image", ResolveUrl(entUser.PhotoPath.ToString().Trim()));
+                hfBgImg.Value = entUser.PhotoPath.ToString().Trim();
             }
             if (!entUser.PhotoFileSize.IsNull)
             {
@@ -197,4 +200,73 @@ public partial class AdminPanel_Account_EditProfile : System.Web.UI.Page
         }
     }
     #endregion checkPassword
+
+    #region SavePhoto
+    private void SavePhoto(UserENT entUser)
+    {
+        #region Variables for photo
+
+        String strFileName = "";
+        String fileName = "";
+        String strExtension = "";
+        String strFileType = "";
+        String strFileSize = "";
+        String userUniqueness =entUser.UserID.ToString().Trim() + "_" +entUser.DisplayName.ToString().Trim();
+        String folderPath = "~/userContent/" + userUniqueness + "/";
+        String abosoluteFolderPath = Server.MapPath(folderPath);
+        #endregion Variables for photo
+
+        if (fuAvatar.HasFile)
+        {
+            #region Create and Add photo
+            strExtension = System.IO.Path.GetExtension(fuAvatar.FileName);
+            fileName = DateTime.Now.ToString("ddMMyyyyhhmmss") + strExtension;
+            strFileName = folderPath + fileName;
+            strFileType = fuAvatar.PostedFile.ContentType;
+            String MBOrKB = "";
+            int fileSize = fuAvatar.PostedFile.ContentLength;
+            float fileSizeInMb = fileSize / (1024 * 1024);
+            MBOrKB = "MB";
+            if (fileSizeInMb <= 0)
+            {
+                fileSizeInMb = fileSize / 1024;
+                MBOrKB = "KB";
+
+            }
+            strFileSize = fileSizeInMb + MBOrKB;
+            if (!Directory.Exists(abosoluteFolderPath))
+            {
+                Directory.CreateDirectory(abosoluteFolderPath);
+
+            }
+                #region Delete photo if available before
+                String AbsolutePath = ResolveUrl(hfBgImg.Value);
+                FileInfo file = new FileInfo(Server.MapPath(AbsolutePath));
+                if (file.Exists)
+                {
+                    file.Delete();
+
+                }
+                #endregion Delete photo if available before
+            fuAvatar.SaveAs(abosoluteFolderPath + fileName.ToString().Trim());
+            #endregion Create and Add photo
+        }
+        else
+        {
+            #region If File Not selected
+                strFileName = hfBgImg.Value;
+                strFileType = hfImgType.Value;
+                strExtension = hfImgExtension.Value;
+                strFileSize = hfImgSize.Value;
+            #endregion If File Not selected
+        }
+        if (strFileName != null && strFileName != "")
+        {
+            entUser.PhotoPath = strFileName;
+            entUser.PhotoFileType = strFileType;
+            entUser.PhotoFileExtension = strExtension;
+            entUser.PhotoFileSize = strFileSize;
+        }
+    }
+    #endregion SavePhoto
 }

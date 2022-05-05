@@ -7,10 +7,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
+
 public partial class UserPanel_Test : System.Web.UI.Page
 {
-
     List<string> optionList = new List<string> { };
+
     protected void Page_Load(object sender, EventArgs e)
     {
         kt_post.Visible = false;
@@ -153,7 +155,16 @@ public partial class UserPanel_Test : System.Web.UI.Page
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        
+        foreach (RepeaterItem item in rpQuestion.Items)
+        {
+            // Checking the item is a data item
+            if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+            {
+                var rdbList = item.FindControl("options") as RadioButtonList;
+                // Get the selected value
+                string selected = rdbList.SelectedValue;
+            }
+        }
     }
 
   
